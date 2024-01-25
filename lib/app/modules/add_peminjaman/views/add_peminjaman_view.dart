@@ -10,15 +10,48 @@ class AddPeminjamanView extends GetView<AddPeminjamanController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('AddPeminjamanView'),
+        title:  Text('Pinjam Buku ${Get.parameters['judul'].toString()}'),
         centerTitle: true,
       ),
-      body: const Center(
-        child: Text(
-          'AddPeminjamanView is working',
-          style: TextStyle(fontSize: 20),
-        ),
-      ),
+        body: Center(
+            child: Form(
+              key: controller.formKey,
+              child: Column(
+                children: [
+                  Padding(padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                    child: TextFormField(
+                      controller: controller.tanggalPinjamController,
+                      decoration: InputDecoration(hintText: "Masukkan tanggal pinjam", border: OutlineInputBorder(borderRadius: BorderRadius.circular(10))),
+                      validator: (value){
+                        if (value!.length <1){
+                          return "tanggal tidak boleh kosong";
+                        }
+                        return null;
+                      },
+                    ),
+                  ),
+                  Padding(padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                    child: TextFormField(
+                      controller: controller.tanggalKembaliController,
+                      decoration: InputDecoration(hintText: "Masukkan tanggal kembali", border: OutlineInputBorder(borderRadius: BorderRadius.circular(10))),
+                      validator: (value){
+                        if (value!.length <1){
+                          return "tanggal tidak boleh kosong";
+                        }
+                        return null;
+                      },
+                    ),
+                  ),
+                  Obx(() => controller.loading.value?
+                  CircularProgressIndicator():
+                  ElevatedButton(onPressed: (){
+                    controller.register();
+                  }, child: Text("pinjam"))
+                  )
+                ],
+              ),
+            )
+        )
     );
   }
 }

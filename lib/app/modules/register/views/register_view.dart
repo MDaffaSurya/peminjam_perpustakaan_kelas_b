@@ -18,9 +18,10 @@ class RegisterView extends GetView<RegisterController> {
               key: controller.formKey,
               child: Column(
                 children: [
-                  TextFormField(
+                  Padding(padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                  child: TextFormField(
                     controller: controller.namaController,
-                    decoration: InputDecoration(hintText: "Masukkan Nama"),
+                    decoration: InputDecoration(hintText: "Masukkan Nama", icon: Icon(Icons.person), border: OutlineInputBorder(borderRadius: BorderRadius.circular(10))),
                     validator: (value){
                       if (value!.length <1){
                         return "Nama tidak boleh kosong";
@@ -28,9 +29,11 @@ class RegisterView extends GetView<RegisterController> {
                       return null;
                     },
                   ),
-                  TextFormField(
+        ),
+                  Padding(padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                  child: TextFormField(
                     controller: controller.usernameController,
-                    decoration: InputDecoration(hintText: "Masukkan Username"),
+                    decoration: InputDecoration(hintText: "Masukkan Username", icon: Icon(Icons.person), border: OutlineInputBorder(borderRadius: BorderRadius.circular(10))),
                     validator: (value){
                       if (value!.length <1){
                         return "Username tidak boleh kosong";
@@ -38,9 +41,11 @@ class RegisterView extends GetView<RegisterController> {
                       return null;
                     },
                   ),
-                  TextFormField(
+        ),
+                  Padding(padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                 child: TextFormField(
                     controller: controller.telpController,
-                    decoration: InputDecoration(hintText: "Masukkan No Telp"),
+                    decoration: InputDecoration(hintText: "Masukkan No Telp",icon: Icon(Icons.phone), border: OutlineInputBorder(borderRadius: BorderRadius.circular(10))),
                     validator: (value){
                       if (value!.length <2){
                         return "No Telp tidak boleh kosong";
@@ -48,9 +53,11 @@ class RegisterView extends GetView<RegisterController> {
                       return null;
                     },
                   ),
-                  TextFormField(
+                  ),
+                  Padding(padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                  child: TextFormField(
                     controller: controller.alamatController,
-                    decoration: InputDecoration(hintText: "Masukkan Alamat"),
+                    decoration: InputDecoration(hintText: "Masukkan Alamat", icon: Icon(Icons.home), border: OutlineInputBorder(borderRadius: BorderRadius.circular(10))),
                     validator: (value){
                       if (value!.length <2){
                         return "Alamat tidak boleh kosong";
@@ -58,15 +65,18 @@ class RegisterView extends GetView<RegisterController> {
                       return null;
                     },
                   ),
-                  TextFormField(
+                  ),
+                  Padding(padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                  child: TextFormField(
                     controller: controller.passwordController,
-                    decoration: InputDecoration(hintText: "Masukkan Password"),
+                    decoration: InputDecoration(hintText: "Masukkan Password", icon: Icon(Icons.lock), border: OutlineInputBorder(borderRadius: BorderRadius.circular(10))),
                     validator: (value){
                       if (value!.length <2){
                         return "Password tidak boleh kosong";
                       }
                       return null;
                     },
+                  ),
                   ),
                   Obx(() => controller.loading.value?
                   CircularProgressIndicator():
