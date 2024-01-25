@@ -18,7 +18,13 @@ class PeminjamanView extends GetView<PeminjamanController> {
           itemBuilder: (context, index){
             return ListTile(
               title: Text("judul ${state[index].book?.judul}") ,
-              subtitle: Text("Tanggal pinjam ${state[index].tanggalPinjam}"),
+              subtitle:Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children:[
+                Text("Tanggal pinjam ${state[index].tanggalPinjam}"),
+                Text("Tanggal pinjam ${state[index].tanggalKembali}"),
+              ],
+              ),
             );
           },
           separatorBuilder: (context, index){
