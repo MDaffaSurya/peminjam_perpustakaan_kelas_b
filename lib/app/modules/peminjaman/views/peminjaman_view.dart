@@ -13,12 +13,18 @@ class PeminjamanView extends GetView<PeminjamanController> {
         title: const Text('PeminjamanView'),
         centerTitle: true,
       ),
-      body: const Center(
-        child: Text(
-          'PeminjamanView is working',
-          style: TextStyle(fontSize: 20),
-        ),
-      ),
+        body: controller.obx((state) => ListView.separated(
+          itemCount: state!.length,
+          itemBuilder: (context, index){
+            return ListTile(
+              title: Text("judul${state[index].bookId}") ,
+              subtitle: Text("Tanggal pinjam ${state[index].book?.judul}"),
+            );
+          },
+          separatorBuilder: (context, index){
+            return Divider();
+          },
+        ),)
     );
   }
 }

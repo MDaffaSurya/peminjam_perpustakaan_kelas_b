@@ -24,7 +24,8 @@ class BookController extends GetxController with StateMixin<List<DataBook>>{
   void onClose() {
     super.onClose();
   }
-  Future<void> getData() async {
+  Future<void>
+  getData() async {
     change(null, status: RxStatus.loading());
     try {
       final response = await ApiProvider.instance().get(Endpoint.book,);
