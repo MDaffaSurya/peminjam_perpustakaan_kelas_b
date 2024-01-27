@@ -18,8 +18,12 @@ class BookView extends GetView<BookController> {
           itemCount: state!.length,
           itemBuilder: (context, index){
             return ListTile(
-              title: Text("${state[index].judul}") ,
-              subtitle: Text("Penulis ${state[index].penulis}"),
+              title: Text("${state[index].judul}",
+              style: TextStyle(fontSize: 18),
+              ) ,
+              subtitle: Text("Penulis: ${state[index].penulis}",
+                style: TextStyle(fontSize: 14),
+              ),
               trailing: ElevatedButton(
                 child: Text("Pinjam"),
                 onPressed: (){
@@ -28,6 +32,15 @@ class BookView extends GetView<BookController> {
                     'judul': state[index].judul??"-"
                   });
                 },
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.blue,
+                      onPrimary: Colors.white,
+                  padding:
+                    EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                    shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                ),
+                ),
               ),
             );
           },
