@@ -22,6 +22,7 @@ class HomeView extends GetView<HomeController> {
               onPressed: () {
                 Get.toNamed(Routes.BOOK);
               },
+
               child: Text(
                 "Buku",
                 style: TextStyle(fontSize: 20),

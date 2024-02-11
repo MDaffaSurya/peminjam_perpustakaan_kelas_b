@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:peminjam_perpustakaan_kelas_b/app/routes/app_pages.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../controllers/login_controller.dart';
 
@@ -14,15 +15,30 @@ class LoginView extends GetView<LoginController> {
         title: const Text('LoginView'),
         centerTitle: true,
       ),
-      body: SingleChildScrollView( // tambahkan SingleChildScrollView agar tata letak bisa di-scroll jika keyboard muncul
+      body: SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start, // tambahkan crossAxisAlignment: CrossAxisAlignment.start
           children: [
-
             Padding(
               padding: const EdgeInsets.all(20.0),
-              child: Text(
-                'Silahkan login',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Hi, Welcome',
+                    style: GoogleFonts.manrope(
+                      fontSize: 25, fontWeight:FontWeight.w600
+                    ),
+                  ),
+
+                  SizedBox(height: 5), // jarak antara teks "Hi welcome" dan "Silahkan login"
+                  Text(
+                    'Hello again, you’ve been missed!',
+                    style: GoogleFonts.manrope(
+                      fontSize: 14, color: Colors.grey,
+                    ),
+                  ),
+                ],
               ),
             ),
             Center(
@@ -36,7 +52,7 @@ class LoginView extends GetView<LoginController> {
                         controller: controller.usernameController,
                         decoration: InputDecoration(
                           hintText: "Masukkan Username",
-                          icon: Icon(Icons.person),
+                          // icon: Icon(Icons.person),
                           border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
                         ),
                         validator: (value) {
@@ -54,7 +70,7 @@ class LoginView extends GetView<LoginController> {
                         obscureText: true,
                         decoration: InputDecoration(
                           hintText: "Masukkan Password",
-                          icon: Icon(Icons.lock),
+                          // icon: Icon(Icons.lock),
                           border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
                         ),
                         validator: (value) {
@@ -72,11 +88,11 @@ class LoginView extends GetView<LoginController> {
                       children: [
                         Text("Belum punya akun?"),
                         TextButton(
-                          onPressed: () => Get.toNamed(Routes.REGISTER),
-                          child: Text("Daftar"),
-                          style: ElevatedButton.styleFrom(
-                            onPrimary: Colors.blue
-                          )
+                            onPressed: () => Get.toNamed(Routes.REGISTER),
+                            child: Text("Daftar"),
+                            style: ElevatedButton.styleFrom(
+                                onPrimary: Colors.blue
+                            )
                         ),
                       ],
                     ),
@@ -95,7 +111,7 @@ class LoginView extends GetView<LoginController> {
                           borderRadius: BorderRadius.circular(30),
                         ),
                       ),
-                      ),
+                    ),
                     ),
                   ],
                 ),
