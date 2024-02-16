@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
+import '../../../routes/app_pages.dart';
 import '../controllers/register_controller.dart';
 
 class RegisterView extends GetView<RegisterController> {
@@ -85,14 +86,28 @@ class RegisterView extends GetView<RegisterController> {
                   },
                       child: Text("Daftar"),
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.blue,
+                      primary: Color(0xFF351A96),
                       onPrimary: Colors.white,
                       padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30),
+                        borderRadius: BorderRadius.circular(5),
                       ),
                     ),
                   ),
+                  ),
+                  SizedBox(height: 10),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text("Sudah punya akun?"),
+                      TextButton(
+                          onPressed: () => Get.toNamed(Routes.LOGIN),
+                          child: Text("Login"),
+                          style: ElevatedButton.styleFrom(
+                              onPrimary: Color(0xFF351A96)
+                          )
+                      ),
+                    ],
                   ),
                 ],
               ),

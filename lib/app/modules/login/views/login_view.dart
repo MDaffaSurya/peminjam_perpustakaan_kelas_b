@@ -51,7 +51,7 @@ class LoginView extends GetView<LoginController> {
                       child: TextFormField(
                         controller: controller.usernameController,
                         decoration: InputDecoration(
-                          hintText: "Masukkan Username",
+                          hintText: "Please Enter Your Username",
                           // icon: Icon(Icons.person),
                           border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
                         ),
@@ -67,9 +67,9 @@ class LoginView extends GetView<LoginController> {
                       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                       child: TextFormField(
                         controller: controller.passwordController,
-                        obscureText: true,
+                        obscureText: controller.passwordObscureText.value,
                         decoration: InputDecoration(
-                          hintText: "Masukkan Password",
+                          hintText: "Please Enter Your Password",
                           // icon: Icon(Icons.lock),
                           border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
                         ),
@@ -82,6 +82,24 @@ class LoginView extends GetView<LoginController> {
                       ),
                     ),
 
+
+                    Obx(() => controller.loading.value
+                        ? CircularProgressIndicator()
+                        : ElevatedButton(
+                      onPressed: () {
+                        controller.login();
+                      },
+                      child: Text("Login"),
+                      style: ElevatedButton.styleFrom(
+                        primary: Color(0xFF351A96),
+                        onPrimary: Colors.white,
+                        padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                      ),
+                    ),
+                    ),
                     SizedBox(height: 10),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -91,27 +109,10 @@ class LoginView extends GetView<LoginController> {
                             onPressed: () => Get.toNamed(Routes.REGISTER),
                             child: Text("Daftar"),
                             style: ElevatedButton.styleFrom(
-                                onPrimary: Colors.blue
+                                onPrimary: Color(0xFF351A96)
                             )
                         ),
                       ],
-                    ),
-                    Obx(() => controller.loading.value
-                        ? CircularProgressIndicator()
-                        : ElevatedButton(
-                      onPressed: () {
-                        controller.login();
-                      },
-                      child: Text("Login"),
-                      style: ElevatedButton.styleFrom(
-                        primary: Colors.blue,
-                        onPrimary: Colors.white,
-                        padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30),
-                        ),
-                      ),
-                    ),
                     ),
                   ],
                 ),

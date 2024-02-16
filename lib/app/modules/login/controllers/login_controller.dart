@@ -16,6 +16,12 @@ class LoginController extends GetxController {
   final TextEditingController usernameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final count = 0.obs;
+  var passwordObscureText = true.obs;
+
+  void togglePasswordVisibility() {
+    passwordObscureText.value = !passwordObscureText.value;
+  }
+
   @override
   void onInit() {
     super.onInit();
