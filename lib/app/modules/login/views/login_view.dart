@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:peminjam_perpustakaan_kelas_b/app/routes/app_pages.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+
 import '../controllers/login_controller.dart';
 
 class LoginView extends GetView<LoginController> {
@@ -25,15 +26,15 @@ class LoginView extends GetView<LoginController> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Hi, Welcome 👋',
+                    '     Hi, Welcome 👋',
                     style: GoogleFonts.manrope(
                       fontSize: 25, fontWeight:FontWeight.w600
                     ),
                   ),
 
-                  SizedBox(height: 5), // jarak antara teks "Hi welcome" dan "Silahkan login"
+                  SizedBox(height: 5, width: 20,), // jarak antara teks "Hi welcome" dan "Silahkan login"
                   Text(
-                    'Hello again, you’ve been missed!',
+                    '         Hello again, you’ve been missed!',
                     style: GoogleFonts.manrope(
                       fontSize: 14, color: Colors.grey,
                     ),
@@ -47,7 +48,7 @@ class LoginView extends GetView<LoginController> {
                 child: Column(
                   children: [
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                      padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 10),
                       child: TextFormField(
                         controller: controller.usernameController,
                         decoration: InputDecoration(
@@ -64,7 +65,7 @@ class LoginView extends GetView<LoginController> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                      padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 10),
                       child: TextFormField(
                         controller: controller.passwordController,
                         obscureText: controller.passwordObscureText.value,
