@@ -13,14 +13,16 @@ import 'package:peminjam_perpustakaan_kelas_b/app/routes/app_pages.dart';
 class LoginController extends GetxController {
   final loading = false.obs;
   final GlobalKey<FormState> formKey =GlobalKey<FormState>();
-  final TextEditingController usernameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final count = 0.obs;
-  var passwordObscureText = true.obs;
+  RxBool passwordObscureText = true.obs;
 
   void togglePasswordVisibility() {
     passwordObscureText.value = !passwordObscureText.value;
   }
+
+
 
   @override
   void onInit() {
@@ -53,12 +55,13 @@ class LoginController extends GetxController {
       if (formKey.currentState!.validate()) {
         final response = await ApiProvider.instance().post(Endpoint.login,
             data: dio.FormData.fromMap(
-                {"username": usernameController.text.toString(),
+                {"email": emailController.text.toString(),
                   "password": passwordController.text.toString()}));
         if (response.statusCode == 200) {
           ResponseLogin responseLogin=ResponseLogin.fromJson(response.data);
           await StorageProvider.write(StorageKey.status, "logged");
           await StorageProvider.write(StorageKey.idUser, responseLogin.data!.id.toString());
+          await StorageProvider.write(StorageKey.username, responseLogin.data!.username.toString());
           Get.offAllNamed(Routes.HOME);
         } else {
           Get.snackbar("Sorry", "Login Gagal", backgroundColor: Colors.orange);

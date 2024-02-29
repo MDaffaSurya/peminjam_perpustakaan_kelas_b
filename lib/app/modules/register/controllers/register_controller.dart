@@ -9,10 +9,8 @@ import 'package:peminjam_perpustakaan_kelas_b/app/data/provider/api_provider.dar
 class RegisterController extends GetxController {
   final loading = false.obs;
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  final TextEditingController namaController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
   final TextEditingController usernameController = TextEditingController();
-  final TextEditingController telpController = TextEditingController();
-  final TextEditingController alamatController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
   final count = 0.obs;
@@ -39,10 +37,8 @@ class RegisterController extends GetxController {
       if (formKey.currentState!.validate()){
         final response = await ApiProvider.instance().post(Endpoint.register,
             data: {
-              "nama": namaController.text.toString(),
               "username": usernameController.text.toString(),
-              "telp": telpController.text.toString(),
-              "alamat": alamatController.text.toString(),
+              "email": emailController.text.toString(),
               "password": passwordController.text.toString(),
             });
         if(response.statusCode == 201){

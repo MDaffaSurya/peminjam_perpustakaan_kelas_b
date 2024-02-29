@@ -23,7 +23,7 @@ class RegisterView extends GetView<RegisterController> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  '                Hi, Welcome 👋',
+                  '     Hi, Welcome Back! 👋',
                   textAlign: TextAlign.left, // Menjadikan teks rata kiri
                   style: GoogleFonts.manrope(
                     fontSize: 25,
@@ -32,7 +32,7 @@ class RegisterView extends GetView<RegisterController> {
                 ),
                 SizedBox(height: 5,), // Jarak antara teks "Hi welcome" dan "Silahkan login"
                 Text(
-                  '                            Hello again, you’ve been missed!',
+                  '         Hello again, you’ve been missed!',
                   textAlign: TextAlign.left, // Menjadikan teks rata kiri
                   style: GoogleFonts.manrope(
                     fontSize: 14,
@@ -41,12 +41,12 @@ class RegisterView extends GetView<RegisterController> {
                 ),
                 SizedBox(height: 20,), // Jarak antara teks dan TextFormField pertama
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 10),
+                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                   child: TextFormField(
-                    controller: controller.namaController,
+                    controller: controller.usernameController,
                     decoration: InputDecoration(
-                      hintText: "Masukkan Nama",
-                      icon: Icon(Icons.person),
+                      hintText: "Masukkan username",
+                      // icon: Icon(Icons.person),
                       border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
                     ),
                     validator: (value){
@@ -58,12 +58,12 @@ class RegisterView extends GetView<RegisterController> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 10),
+                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                   child: TextFormField(
-                    controller: controller.usernameController,
+                    controller: controller.emailController,
                     decoration: InputDecoration(
-                      hintText: "Masukkan Username",
-                      icon: Icon(Icons.person),
+                      hintText: "Masukkan email",
+                      // icon: Icon(Icons.person),
                       border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
                     ),
                     validator: (value){
@@ -74,47 +74,15 @@ class RegisterView extends GetView<RegisterController> {
                     },
                   ),
                 ),
+
+
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 10),
-                  child: TextFormField(
-                    controller: controller.telpController,
-                    decoration: InputDecoration(
-                      hintText: "Masukkan No Telp",
-                      icon: Icon(Icons.phone),
-                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-                    ),
-                    validator: (value){
-                      if (value!.length <2){
-                        return "No Telp tidak boleh kosong";
-                      }
-                      return null;
-                    },
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 10),
-                  child: TextFormField(
-                    controller: controller.alamatController,
-                    decoration: InputDecoration(
-                      hintText: "Masukkan Alamat",
-                      icon: Icon(Icons.home),
-                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-                    ),
-                    validator: (value){
-                      if (value!.length <2){
-                        return "Alamat tidak boleh kosong";
-                      }
-                      return null;
-                    },
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 10),
+                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                   child: TextFormField(
                     controller: controller.passwordController,
                     decoration: InputDecoration(
                       hintText: "Masukkan Password",
-                      icon: Icon(Icons.lock),
+                      // icon: Icon(Icons.lock),
                       border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
                     ),
                     validator: (value){
