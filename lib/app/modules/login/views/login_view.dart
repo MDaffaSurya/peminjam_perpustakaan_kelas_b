@@ -68,7 +68,7 @@ class LoginView extends GetView<LoginController> {
                       padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 10),
                       child: TextFormField(
                         controller: controller.passwordController,
-                        obscureText: controller.passwordObscureText.value,
+                        obscureText: true,
                         decoration: InputDecoration(
                           hintText: "Please Enter Your Password",
                           // icon: Icon(Icons.lock),
