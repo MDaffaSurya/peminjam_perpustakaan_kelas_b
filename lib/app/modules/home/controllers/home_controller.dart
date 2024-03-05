@@ -3,9 +3,7 @@ import 'package:peminjam_perpustakaan_kelas_b/app/data/provider/storage_provider
 
 class HomeController extends GetxController {
   //TODO: Implement HomeController
-<<<<<<< HEAD
   RxString nama = 'nama'.obs;
-=======
   RxString username = ''.obs;
 
   // Metode untuk menyimpan informasi pengguna yang masuk
@@ -13,19 +11,15 @@ class HomeController extends GetxController {
     this.username.value = username;
     // Simpan informasi pengguna ke penyimpanan lokal jika perlu
   }
->>>>>>> origin/main
 
 
   final count = 0.obs;
   @override
   void onInit() {
     super.onInit();
-<<<<<<< HEAD
     nama = StorageProvider.read(StorageKey.username).obs;
     print(nama);
     update();
-=======
->>>>>>> origin/main
 
   }
 
