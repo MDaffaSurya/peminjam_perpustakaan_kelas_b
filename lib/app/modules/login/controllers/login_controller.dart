@@ -17,11 +17,7 @@ class LoginController extends GetxController {
   final TextEditingController passwordController = TextEditingController();
   final count = 0.obs;
   RxBool passwordObscureText = true.obs;
-
-  void togglePasswordVisibility() {
-    passwordObscureText.value = !passwordObscureText.value;
-  }
-
+  var isPasswordHidden = true.obs;
 
 
   @override
@@ -32,12 +28,12 @@ class LoginController extends GetxController {
   @override
   void onReady() {
     super.onReady();
-    super.onReady();
-    String status = StorageProvider.read(StorageKey.status);
-    log("status : $status");
-    if (status == "logged") {
-      Get.offAllNamed(Routes.HOME);
-    }
+    // super.onReady();
+    // String status = StorageProvider.read(StorageKey.status);
+    // log("status : $status");
+    // if (status == "logged") {
+    //   Get.offAllNamed(Routes.HOME);
+    // }
   }
 
   @override
@@ -46,6 +42,9 @@ class LoginController extends GetxController {
   }
 
   void increment() => count.value++;
+  void togglePasswordVisibility() {
+    isPasswordHidden.toggle();
+  }
 
   login() async {
     loading(true);

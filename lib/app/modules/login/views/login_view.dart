@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
-import 'package:peminjam_perpustakaan_kelas_b/app/routes/app_pages.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-
+import '../../../routes/app_pages.dart';
 import '../controllers/login_controller.dart';
 
 class LoginView extends GetView<LoginController> {
   const LoginView({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,7 +17,7 @@ class LoginView extends GetView<LoginController> {
       ),
       body: SingleChildScrollView(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start, // tambahkan crossAxisAlignment: CrossAxisAlignment.start
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
               padding: const EdgeInsets.all(20.0),
@@ -28,15 +27,16 @@ class LoginView extends GetView<LoginController> {
                   Text(
                     '     Hi, Welcome 👋',
                     style: GoogleFonts.manrope(
-                      fontSize: 25, fontWeight:FontWeight.w600
+                      fontSize: 25,
+                      fontWeight: FontWeight.w600,
                     ),
                   ),
-
-                  SizedBox(height: 5, width: 20,), // jarak antara teks "Hi welcome" dan "Silahkan login"
+                  SizedBox(height: 5, width: 20,),
                   Text(
                     '         Hello again, you’ve been missed!',
                     style: GoogleFonts.manrope(
-                      fontSize: 14, color: Colors.grey,
+                      fontSize: 14,
+                      color: Colors.grey,
                     ),
                   ),
                 ],
@@ -53,12 +53,13 @@ class LoginView extends GetView<LoginController> {
                         controller: controller.emailController,
                         decoration: InputDecoration(
                           hintText: "Please Enter Your email",
-                          // icon: Icon(Icons.person),
-                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
                         ),
                         validator: (value) {
-                          if (value!.length < 2) {
-                            return "username tidak boleh kosong";
+                          if (value!.isEmpty) {
+                            return "Email tidak boleh kosong";
                           }
                           return null;
                         },
@@ -66,24 +67,32 @@ class LoginView extends GetView<LoginController> {
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 10),
-                      child: TextFormField(
+                      child: Obx(() => TextFormField(
                         controller: controller.passwordController,
-                        obscureText: true,
+                        obscureText: controller.isPasswordHidden.value,
                         decoration: InputDecoration(
                           hintText: "Please Enter Your Password",
-                          // icon: Icon(Icons.lock),
-                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          suffixIcon: InkWell(
+                            child: Icon(
+                              controller.isPasswordHidden.value ? Icons.visibility : Icons.visibility_off,
+                              color: Colors.black,
+                            ),
+                            onTap: () {
+                              controller.togglePasswordVisibility();
+                            },
+                          ),
                         ),
                         validator: (value) {
-                          if (value!.length < 2) {
-                            return "password tidak boleh kosong";
+                          if (value!.isEmpty) {
+                            return "Password tidak boleh kosong";
                           }
                           return null;
                         },
-                      ),
+                      )),
                     ),
-
-
                     Obx(() => controller.loading.value
                         ? CircularProgressIndicator()
                         : ElevatedButton(
@@ -107,11 +116,11 @@ class LoginView extends GetView<LoginController> {
                       children: [
                         Text("Belum punya akun?"),
                         TextButton(
-                            onPressed: () => Get.toNamed(Routes.REGISTER),
-                            child: Text("Daftar"),
-                            style: ElevatedButton.styleFrom(
-                                onPrimary: Color(0xFF351A96)
-                            )
+                          onPressed: () => Get.toNamed(Routes.REGISTER),
+                          child: Text("Daftar"),
+                          style: ElevatedButton.styleFrom(
+                            onPrimary: Color(0xFF351A96),
+                          ),
                         ),
                       ],
                     ),

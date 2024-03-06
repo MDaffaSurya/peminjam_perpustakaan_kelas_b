@@ -12,6 +12,7 @@ class RegisterController extends GetxController {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController usernameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  // final TextEditingController namalengkapController = TextEditingController();
 
   final count = 0.obs;
   @override
@@ -40,6 +41,7 @@ class RegisterController extends GetxController {
               "username": usernameController.text.toString(),
               "email": emailController.text.toString(),
               "password": passwordController.text.toString(),
+              // "nama lengkap": namalengkapController.text.toString(),
             });
         if(response.statusCode == 201){
           Get.back();
