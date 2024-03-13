@@ -22,14 +22,14 @@ class HomeView extends GetView<HomeController> {
                   children: [
                     Icon(Icons.account_circle),
                     SizedBox(width: 8),
-                   Text('Hi, ${StorageProvider.read(StorageKey.username)}', style: TextStyle(fontSize: 18)),
+                   Text('Hi, ${StorageProvider.read(StorageKey.username)}', style: TextStyle(fontSize: 24)),
                   ],
                 ),
                 SizedBox(height: 5),
                 Text(
                   'What are you reading today?',
                   style: GoogleFonts.manrope(
-                    fontSize: 14,
+                    fontSize: 15,
                     color: Colors.grey,
                   ),
                 ),
@@ -50,47 +50,47 @@ class HomeView extends GetView<HomeController> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          ElevatedButton.icon(
-            onPressed: () {
-              Get.toNamed(Routes.BOOK);
-            },
-            icon: Icon(Icons.book),
-            label: Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Text(
-                "Buku",
-                style: TextStyle(fontSize: 20),
-              ),
-            ),
-            style: ElevatedButton.styleFrom(
-              primary: Colors.blue,
-              onPrimary: Colors.white,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
-              ),
-            ),
-          ),
-          SizedBox(height: 10),
-          ElevatedButton.icon(
-            onPressed: () {
-              Get.toNamed(Routes.PEMINJAMAN);
-            },
-            icon: Icon(Icons.library_books),
-            label: Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Text(
-                "Peminjaman",
-                style: TextStyle(fontSize: 20),
-              ),
-            ),
-            style: ElevatedButton.styleFrom(
-              primary: Colors.blue,
-              onPrimary: Colors.white,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
-              ),
-            ),
-          ),
+          // ElevatedButton.icon(
+          //   onPressed: () {
+          //     Get.toNamed(Routes.BOOK);
+          //   },
+          //   icon: Icon(Icons.book),
+          //   label: Padding(
+          //     padding: const EdgeInsets.all(20.0),
+          //     child: Text(
+          //       "Buku",
+          //       style: TextStyle(fontSize: 20),
+          //     ),
+          //   ),
+          //   style: ElevatedButton.styleFrom(
+          //     primary: Colors.blue,
+          //     onPrimary: Colors.white,
+          //     shape: RoundedRectangleBorder(
+          //       borderRadius: BorderRadius.circular(10),
+          //     ),
+          //   ),
+          // ),
+          // SizedBox(height: 10),
+          // ElevatedButton.icon(
+          //   onPressed: () {
+          //     Get.toNamed(Routes.PEMINJAMAN);
+          //   },
+          //   icon: Icon(Icons.library_books),
+          //   label: Padding(
+          //     padding: const EdgeInsets.all(20.0),
+          //     child: Text(
+          //       "Peminjaman",
+          //       style: TextStyle(fontSize: 20),
+          //     ),
+          //   ),
+          //   style: ElevatedButton.styleFrom(
+          //     primary: Colors.blue,
+          //     onPrimary: Colors.white,
+          //     shape: RoundedRectangleBorder(
+          //       borderRadius: BorderRadius.circular(10),
+          //     ),
+          //   ),
+          // ),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -102,8 +102,12 @@ class HomeView extends GetView<HomeController> {
             Get.toNamed(Routes.BOOK);
           } else if (index == 2) {
             Get.toNamed(Routes.PEMINJAMAN);
+          } else if (index == 3) {
+            Get.toNamed(Routes.KOLEKSI);
           }
         },
+        selectedItemColor: Colors.purple, // Warna ikon yang dipilih
+        unselectedItemColor: Colors.grey, // Warna ikon yang tidak dipilih
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
@@ -111,11 +115,15 @@ class HomeView extends GetView<HomeController> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.book),
-            label: 'Buku',
+            label: '',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.library_books),
-            label: 'Peminjaman',
+            label: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.collections),
+            label: '',
           ),
         ],
       ),

@@ -59,20 +59,28 @@ class BookView extends GetView<BookController> {
           } else if (index == 2) {
             // Jika item ketiga ditekan, navigasi ke halaman Book
             Get.toNamed(Routes.PEMINJAMAN);
+          }else if (index == 3) {
+            // Jika item ketiga ditekan, navigasi ke halaman Book
+            Get.toNamed(Routes.KOLEKSI);
           }
         },
+        selectedItemColor: Colors.purple, // Warna ikon yang dipilih
+        unselectedItemColor: Colors.grey, // Warna ikon yang tidak dipilih
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.home), // Ikon untuk item pertama
-            label: 'Home', // Label untuk item pertama
+            label: '', // Label untuk item pertama
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.book), // Ikon untuk item kedua
-            label: 'Book', // Label untuk item kedua
+            label: 'Buku', // Label untuk item kedua
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.library_books), // Ikon untuk item ketiga
-            label: 'Peminjaman', // Label untuk item ketiga
+            label: '', // Label untuk item ketiga
+          ),BottomNavigationBarItem(
+            icon: Icon(Icons.collections), // Ikon untuk item ketiga
+            label: '', // Label untuk item ketiga
           ),
         ],
       ),

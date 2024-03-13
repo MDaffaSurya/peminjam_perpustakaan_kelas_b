@@ -40,23 +40,39 @@ class RegisterView extends GetView<RegisterController> {
                   ),
                 ),
                 SizedBox(height: 20,), // Jarak antara teks dan TextFormField pertama
-                // Padding(
-                //   padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                //   child: TextFormField(
-                //     controller: controller.namalengkapController,
-                //     decoration: InputDecoration(
-                //       hintText: "Masukkan nama lengkap",
-                //       // icon: Icon(Icons.person),
-                //       border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-                //     ),
-                //     validator: (value){
-                //       if (value!.length <1){
-                //         return "Nama lengkap tidak boleh kosong";
-                //       }
-                //       return null;
-                //     },
-                //   ),
-                // ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                  child: TextFormField(
+                    controller: controller.nama_lengkapController,
+                    decoration: InputDecoration(
+                      hintText: "Masukkan nama lengkap",
+                      // icon: Icon(Icons.person),
+                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+                    ),
+                    validator: (value){
+                      if (value!.length <1){
+                        return "Nama lengkap tidak boleh kosong";
+                      }
+                      return null;
+                    },
+                  ),
+                ),Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                  child: TextFormField(
+                    controller: controller.alamatController,
+                    decoration: InputDecoration(
+                      hintText: "Masukkan alamat",
+                      // icon: Icon(Icons.person),
+                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+                    ),
+                    validator: (value){
+                      if (value!.length <1){
+                        return "alamat tidak boleh kosong";
+                      }
+                      return null;
+                    },
+                  ),
+                ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                   child: TextFormField(

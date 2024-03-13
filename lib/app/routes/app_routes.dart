@@ -10,6 +10,8 @@ abstract class Routes {
   static const PEMINJAMAN = _Paths.PEMINJAMAN;
   static const ADD_PEMINJAMAN = _Paths.ADD_PEMINJAMAN;
   static const KOLEKSI = _Paths.KOLEKSI;
+  static const BOTTOM_NAVIGATION_BAR = _Paths.BOTTOM_NAVIGATION_BAR;
+  static const DASHBOARD = _Paths.DASHBOARD;
 }
 
 abstract class _Paths {
@@ -21,4 +23,6 @@ abstract class _Paths {
   static const PEMINJAMAN = '/peminjaman';
   static const ADD_PEMINJAMAN = '/add-peminjaman';
   static const KOLEKSI = '/koleksi';
+  static const BOTTOM_NAVIGATION_BAR = '/bottom-navigation-bar';
+  static const DASHBOARD = '/dashboard';
 }

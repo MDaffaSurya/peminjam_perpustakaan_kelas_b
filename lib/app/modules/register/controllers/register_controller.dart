@@ -5,6 +5,8 @@ import 'package:get/get.dart';
 import 'package:peminjam_perpustakaan_kelas_b/app/data/constant/endpoint.dart';
 import 'package:peminjam_perpustakaan_kelas_b/app/data/provider/api_provider.dart';
 
+import '../../../routes/app_pages.dart';
+
 
 class RegisterController extends GetxController {
   final loading = false.obs;
@@ -12,7 +14,8 @@ class RegisterController extends GetxController {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController usernameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  // final TextEditingController namalengkapController = TextEditingController();
+  final TextEditingController nama_lengkapController = TextEditingController();
+  final TextEditingController alamatController = TextEditingController();
 
   final count = 0.obs;
   @override
@@ -41,12 +44,15 @@ class RegisterController extends GetxController {
               "username": usernameController.text.toString(),
               "email": emailController.text.toString(),
               "password": passwordController.text.toString(),
-              // "nama lengkap": namalengkapController.text.toString(),
+              "nama_lengkap": nama_lengkapController.text.toString(),
+              "alamat": alamatController.text.toString(),
             });
         if(response.statusCode == 201){
-          Get.back();
+          Get.snackbar("Succes", "Register sukses",backgroundColor: Colors.green);
+          Get.offAllNamed(Routes.LOGIN);
+
         } else {
-          Get.snackbar("Sorry", "Login Gagal",backgroundColor: Colors.orange);
+          Get.snackbar("Sorry", "Register Gagal",backgroundColor: Colors.orange);
         }
       }
       loading(false);
