@@ -1,6 +1,6 @@
-/// status : 200
-/// message : "success"
-/// data : [{"id":1,"kategori_id":1,"judul":"Belajar mengenal angka","penulis":"kusnaidi","penerbit":"PT alangka","tahun_terbit":2024,"created_at":"2024-01-09T05:43:09.000000Z","updated_at":"2024-01-09T05:43:09.000000Z","kategori":{"id":1,"nama":"umum"}}]
+/// Status : 200
+/// Message : "Berhasil Menampilkan All Buku"
+/// data : [{"KategoriBuku":"Novel Romance","Buku":[{"BukuID":1,"CoverBuku":"http://192.168.43.21:8000/storage/images/coverbook/Wind Breaker.png","Judul":"Wind Breaker","Penulis":"Syoung Youn Kwon","Penerbit":"Naver Webtoon","TahunTerbit":"2013","JumlahHalaman":"438","Rating":5,"Total_ulasan":1,"JumlahRating":5,"JumlahPeminjam":0},{"BukuID":2,"CoverBuku":"http://192.168.43.21:8000/storage/images/coverbook/OverLord.png","Judul":"OverLord","Penulis":"Syoung Youn Kwon","Penerbit":"Naver Webtoon","TahunTerbit":"2013","JumlahHalaman":"438","Rating":5,"Total_ulasan":1,"JumlahRating":5,"JumlahPeminjam":0},{"BukuID":3,"CoverBuku":"http://192.168.43.21:8000/storage/images/coverbook/Taiko.png","Judul":"Taiko","Penulis":"Syoung Youn Kwon","Penerbit":"Naver Webtoon","TahunTerbit":"2013","JumlahHalaman":"438","Rating":4,"Total_ulasan":2,"JumlahRating":8,"JumlahPeminjam":0},{"BukuID":4,"CoverBuku":"http://192.168.43.21:8000/storage/images/coverbook/Tensura.png","Judul":"Tensura","Penulis":"Syoung Youn Kwon","Penerbit":"Naver Webtoon","TahunTerbit":"2013","JumlahHalaman":"438","Rating":4.5,"Total_ulasan":2,"JumlahRating":9,"JumlahPeminjam":0}]},{"KategoriBuku":"Novel Fantasy","Buku":[{"BukuID":1,"CoverBuku":"http://192.168.43.21:8000/storage/images/coverbook/Wind Breaker.png","Judul":"Wind Breaker","Penulis":"Syoung Youn Kwon","Penerbit":"Naver Webtoon","TahunTerbit":"2013","JumlahHalaman":"438","Rating":5,"Total_ulasan":1,"JumlahRating":5,"JumlahPeminjam":0},{"BukuID":2,"CoverBuku":"http://192.168.43.21:8000/storage/images/coverbook/OverLord.png","Judul":"OverLord","Penulis":"Syoung Youn Kwon","Penerbit":"Naver Webtoon","TahunTerbit":"2013","JumlahHalaman":"438","Rating":5,"Total_ulasan":1,"JumlahRating":5,"JumlahPeminjam":0},{"BukuID":3,"CoverBuku":"http://192.168.43.21:8000/storage/images/coverbook/Taiko.png","Judul":"Taiko","Penulis":"Syoung Youn Kwon","Penerbit":"Naver Webtoon","TahunTerbit":"2013","JumlahHalaman":"438","Rating":4,"Total_ulasan":2,"JumlahRating":8,"JumlahPeminjam":0},{"BukuID":4,"CoverBuku":"http://192.168.43.21:8000/storage/images/coverbook/Tensura.png","Judul":"Tensura","Penulis":"Syoung Youn Kwon","Penerbit":"Naver Webtoon","TahunTerbit":"2013","JumlahHalaman":"438","Rating":4.5,"Total_ulasan":2,"JumlahRating":9,"JumlahPeminjam":0}]},{"KategoriBuku":"Novel Non Fiksi","Buku":[{"BukuID":5,"CoverBuku":"http://192.168.43.21:8000/storage/images/coverbook/Ki Hajar Dewantara.png","Judul":"Ki Hajar Dewantara","Penulis":"Syoung Youn Kwon","Penerbit":"Naver Webtoon","TahunTerbit":"2013","JumlahHalaman":"438","Rating":0,"Total_ulasan":0,"JumlahRating":0,"JumlahPeminjam":0},{"BukuID":6,"CoverBuku":"http://192.168.43.21:8000/storage/images/coverbook/London Bridge.png","Judul":"London Bridge","Penulis":"Syoung Youn Kwon","Penerbit":"Naver Webtoon","TahunTerbit":"2013","JumlahHalaman":"438","Rating":5,"Total_ulasan":1,"JumlahRating":5,"JumlahPeminjam":0},{"BukuID":7,"CoverBuku":"http://192.168.43.21:8000/storage/images/coverbook/Revolusi France.png","Judul":"Revolusi France","Penulis":"Syoung Youn Kwon","Penerbit":"Naver Webtoon","TahunTerbit":"2013","JumlahHalaman":"438","Rating":0,"Total_ulasan":0,"JumlahRating":0,"JumlahPeminjam":0},{"BukuID":8,"CoverBuku":"http://192.168.43.21:8000/storage/images/coverbook/Adolf Hitler.png","Judul":"Adolf Hitler","Penulis":"Syoung Youn Kwon","Penerbit":"Naver Webtoon","TahunTerbit":"2013","JumlahHalaman":"438","Rating":5,"Total_ulasan":1,"JumlahRating":5,"JumlahPeminjam":0},{"BukuID":9,"CoverBuku":"http://192.168.43.21:8000/storage/images/coverbook/Aspera Ad Astra.png","Judul":"Aspera Ad Astra","Penulis":"Syoung Youn Kwon","Penerbit":"Naver Webtoon","TahunTerbit":"2013","JumlahHalaman":"438","Rating":4,"Total_ulasan":1,"JumlahRating":4,"JumlahPeminjam":0}]}]
 
 class ResponseBook {
   ResponseBook({
@@ -9,8 +9,8 @@ class ResponseBook {
       this.data,});
 
   ResponseBook.fromJson(dynamic json) {
-    status = json['status'];
-    message = json['message'];
+    status = json['Status'];
+    message = json['Message'];
     if (json['data'] != null) {
       data = [];
       json['data'].forEach((v) {
@@ -24,8 +24,8 @@ class ResponseBook {
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
-    map['status'] = status;
-    map['message'] = message;
+    map['Status'] = status;
+    map['Message'] = message;
     if (data != null) {
       map['data'] = data?.map((v) => v.toJson()).toList();
     }
@@ -34,86 +34,101 @@ class ResponseBook {
 
 }
 
-/// id : 1
-/// kategori_id : 1
-/// judul : "Belajar mengenal angka"
-/// penulis : "kusnaidi"
-/// penerbit : "PT alangka"
-/// tahun_terbit : 2024
-/// created_at : "2024-01-09T05:43:09.000000Z"
-/// updated_at : "2024-01-09T05:43:09.000000Z"
-/// kategori : {"id":1,"nama":"umum"}
+/// KategoriBuku : "Novel Romance"
+/// Buku : [{"BukuID":1,"CoverBuku":"http://192.168.43.21:8000/storage/images/coverbook/Wind Breaker.png","Judul":"Wind Breaker","Penulis":"Syoung Youn Kwon","Penerbit":"Naver Webtoon","TahunTerbit":"2013","JumlahHalaman":"438","Rating":5,"Total_ulasan":1,"JumlahRating":5,"JumlahPeminjam":0},{"BukuID":2,"CoverBuku":"http://192.168.43.21:8000/storage/images/coverbook/OverLord.png","Judul":"OverLord","Penulis":"Syoung Youn Kwon","Penerbit":"Naver Webtoon","TahunTerbit":"2013","JumlahHalaman":"438","Rating":5,"Total_ulasan":1,"JumlahRating":5,"JumlahPeminjam":0},{"BukuID":3,"CoverBuku":"http://192.168.43.21:8000/storage/images/coverbook/Taiko.png","Judul":"Taiko","Penulis":"Syoung Youn Kwon","Penerbit":"Naver Webtoon","TahunTerbit":"2013","JumlahHalaman":"438","Rating":4,"Total_ulasan":2,"JumlahRating":8,"JumlahPeminjam":0},{"BukuID":4,"CoverBuku":"http://192.168.43.21:8000/storage/images/coverbook/Tensura.png","Judul":"Tensura","Penulis":"Syoung Youn Kwon","Penerbit":"Naver Webtoon","TahunTerbit":"2013","JumlahHalaman":"438","Rating":4.5,"Total_ulasan":2,"JumlahRating":9,"JumlahPeminjam":0}]
 
 class DataBook {
   DataBook({
-      this.id, 
-      this.kategoriId, 
-      this.judul, 
-      this.penulis, 
-      this.penerbit, 
-      this.tahunTerbit, 
-      this.createdAt, 
-      this.updatedAt, 
-      this.kategori,});
+      this.kategoriBuku, 
+      this.buku,});
 
   DataBook.fromJson(dynamic json) {
-    id = json['id'];
-    kategoriId = json['kategori_id'];
-    judul = json['judul'];
-    penulis = json['penulis'];
-    penerbit = json['penerbit'];
-    tahunTerbit = json['tahun_terbit'];
-    createdAt = json['created_at'];
-    updatedAt = json['updated_at'];
-    kategori = json['kategori'] != null ? Kategori.fromJson(json['kategori']) : null;
+    kategoriBuku = json['KategoriBuku'];
+    if (json['Buku'] != null) {
+      buku = [];
+      json['Buku'].forEach((v) {
+        buku?.add(Buku.fromJson(v));
+      });
+    }
   }
-  int? id;
-  int? kategoriId;
-  String? judul;
-  String? penulis;
-  String? penerbit;
-  int? tahunTerbit;
-  String? createdAt;
-  String? updatedAt;
-  Kategori? kategori;
+  String? kategoriBuku;
+  List<Buku>? buku;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
-    map['id'] = id;
-    map['kategori_id'] = kategoriId;
-    map['judul'] = judul;
-    map['penulis'] = penulis;
-    map['penerbit'] = penerbit;
-    map['tahun_terbit'] = tahunTerbit;
-    map['created_at'] = createdAt;
-    map['updated_at'] = updatedAt;
-    if (kategori != null) {
-      map['kategori'] = kategori?.toJson();
+    map['KategoriBuku'] = kategoriBuku;
+    if (buku != null) {
+      map['Buku'] = buku?.map((v) => v.toJson()).toList();
     }
     return map;
   }
 
 }
 
-/// id : 1
-/// nama : "umum"
+/// BukuID : 1
+/// CoverBuku : "http://192.168.43.21:8000/storage/images/coverbook/Wind Breaker.png"
+/// Judul : "Wind Breaker"
+/// Penulis : "Syoung Youn Kwon"
+/// Penerbit : "Naver Webtoon"
+/// TahunTerbit : "2013"
+/// JumlahHalaman : "438"
+/// Rating : 5
+/// Total_ulasan : 1
+/// JumlahRating : 5
+/// JumlahPeminjam : 0
 
-class Kategori {
-  Kategori({
-      this.id, 
-      this.nama,});
+class Buku {
+  Buku({
+      this.bukuID, 
+      this.coverBuku, 
+      this.judul, 
+      this.penulis, 
+      this.penerbit, 
+      this.tahunTerbit, 
+      this.jumlahHalaman, 
+      this.rating, 
+      this.totalUlasan, 
+      this.jumlahRating, 
+      this.jumlahPeminjam,});
 
-  Kategori.fromJson(dynamic json) {
-    id = json['id'];
-    nama = json['nama'];
+  Buku.fromJson(dynamic json) {
+    bukuID = json['BukuID'];
+    coverBuku = json['CoverBuku'];
+    judul = json['Judul'];
+    penulis = json['Penulis'];
+    penerbit = json['Penerbit'];
+    tahunTerbit = json['TahunTerbit'];
+    jumlahHalaman = json['JumlahHalaman'];
+    rating = json['Rating']?.toDouble();
+    totalUlasan = json['Total_ulasan'];
+    jumlahRating = json['JumlahRating'];
+    jumlahPeminjam = json['JumlahPeminjam'];
   }
-  int? id;
-  String? nama;
+  int? bukuID;
+  String? coverBuku;
+  String? judul;
+  String? penulis;
+  String? penerbit;
+  String? tahunTerbit;
+  String? jumlahHalaman;
+  double? rating;
+  int? totalUlasan;
+  int? jumlahRating;
+  int? jumlahPeminjam;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
-    map['id'] = id;
-    map['nama'] = nama;
+    map['BukuID'] = bukuID;
+    map['CoverBuku'] = coverBuku;
+    map['Judul'] = judul;
+    map['Penulis'] = penulis;
+    map['Penerbit'] = penerbit;
+    map['TahunTerbit'] = tahunTerbit;
+    map['JumlahHalaman'] = jumlahHalaman;
+    map['Rating'] = rating;
+    map['Total_ulasan'] = totalUlasan;
+    map['JumlahRating'] = jumlahRating;
+    map['JumlahPeminjam'] = jumlahPeminjam;
     return map;
   }
 

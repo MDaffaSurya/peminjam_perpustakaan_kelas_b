@@ -12,6 +12,7 @@ abstract class Routes {
   static const KOLEKSI = _Paths.KOLEKSI;
   static const BOTTOM_NAVIGATION_BAR = _Paths.BOTTOM_NAVIGATION_BAR;
   static const DASHBOARD = _Paths.DASHBOARD;
+  static const PROFILE = _Paths.PROFILE;
 }
 
 abstract class _Paths {
@@ -25,4 +26,5 @@ abstract class _Paths {
   static const KOLEKSI = '/koleksi';
   static const BOTTOM_NAVIGATION_BAR = '/bottom-navigation-bar';
   static const DASHBOARD = '/dashboard';
+  static const PROFILE = '/profile';
 }

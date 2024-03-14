@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:peminjam_perpustakaan_kelas_b/app/data/model/response_book.dart';
 
 import '../../../data/provider/storage_provider.dart';
 import '../../../routes/app_pages.dart';
@@ -15,83 +17,47 @@ class HomeView extends GetView<HomeController> {
       appBar: AppBar(
         title: Row(
           children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    Icon(Icons.account_circle),
-                    SizedBox(width: 8),
-                   Text('Hi, ${StorageProvider.read(StorageKey.username)}', style: TextStyle(fontSize: 24)),
-                  ],
-                ),
-                SizedBox(height: 5),
-                Text(
-                  'What are you reading today?',
-                  style: GoogleFonts.manrope(
-                    fontSize: 15,
-                    color: Colors.grey,
+            GestureDetector(
+              onTap: () {
+                Get.toNamed(Routes.PROFILE); // Navigasi ke halaman profil saat ikon profil ditekan
+              },
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Icon(Icons.account_circle),
+                      SizedBox(width: 8),
+                      Text('Hi, ${StorageProvider.read(StorageKey.username)}', style: TextStyle(fontSize: 24)),
+                    ],
                   ),
-                ),
-              ],
+                  SizedBox(height: 5),
+                  Text(
+                    'What are you reading today?',
+                    style: GoogleFonts.manrope(
+                      fontSize: 15,
+                      color: Colors.grey,
+                    ),
+                  ),
+                ],
+              ),
             ),
           ],
         ),
-        actions: [
-          IconButton(
-            onPressed: () {
-              Get.offAllNamed(Routes.LOGIN);
-            },
-            icon: Icon(Icons.logout),
-          ),
-        ],
+        // actions: [
+        //   IconButton(
+        //     onPressed: () {
+        //       Get.offAllNamed(Routes.LOGIN);
+        //     },
+        //     icon: Icon(Icons.logout),
+        //   ),
+        // ],
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          // ElevatedButton.icon(
-          //   onPressed: () {
-          //     Get.toNamed(Routes.BOOK);
-          //   },
-          //   icon: Icon(Icons.book),
-          //   label: Padding(
-          //     padding: const EdgeInsets.all(20.0),
-          //     child: Text(
-          //       "Buku",
-          //       style: TextStyle(fontSize: 20),
-          //     ),
-          //   ),
-          //   style: ElevatedButton.styleFrom(
-          //     primary: Colors.blue,
-          //     onPrimary: Colors.white,
-          //     shape: RoundedRectangleBorder(
-          //       borderRadius: BorderRadius.circular(10),
-          //     ),
-          //   ),
-          // ),
-          // SizedBox(height: 10),
-          // ElevatedButton.icon(
-          //   onPressed: () {
-          //     Get.toNamed(Routes.PEMINJAMAN);
-          //   },
-          //   icon: Icon(Icons.library_books),
-          //   label: Padding(
-          //     padding: const EdgeInsets.all(20.0),
-          //     child: Text(
-          //       "Peminjaman",
-          //       style: TextStyle(fontSize: 20),
-          //     ),
-          //   ),
-          //   style: ElevatedButton.styleFrom(
-          //     primary: Colors.blue,
-          //     onPrimary: Colors.white,
-          //     shape: RoundedRectangleBorder(
-          //       borderRadius: BorderRadius.circular(10),
-          //     ),
-          //   ),
-          // ),
-        ],
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 15),
+          child: kontenSemuaBuku(),
+        ),
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: 0,
@@ -122,9 +88,177 @@ class HomeView extends GetView<HomeController> {
             label: '',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.collections),
+            icon: Icon(Icons.bookmark),
             label: '',
           ),
+        ],
+      ),
+    );
+  }
+  Widget kontenSemuaBuku(){
+    return  Padding(
+      padding: const EdgeInsets.only(bottom: 20),
+      child: Column(
+        children: [
+          controller.obx((state) {
+            if (state == null) {
+              return const Center(
+                child: CircularProgressIndicator(
+                  color: Colors.black,
+                  backgroundColor: Colors.grey,
+                  valueColor: AlwaysStoppedAnimation<Color>(Color(0xFFEA1818)),
+                ),
+              );
+            } else if (state.isEmpty) {
+              return const Center(
+                child: CircularProgressIndicator(
+                  color: Colors.black,
+                  backgroundColor: Colors.grey,
+                  valueColor: AlwaysStoppedAnimation<Color>(Color(0xFFEA1818)),
+                ),
+              );
+            }else{
+              return ListView.builder(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: state.length,
+                itemBuilder: (context, index){
+                  var kategori = state[index].kategoriBuku;
+                  var bukuList = state[index].buku;
+                  return Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 15),
+                        child: SizedBox(
+                          width: double.infinity,
+                          child: Text(
+                            kategori!,
+                            style: GoogleFonts.inriaSans(
+                                fontSize: 18.0,
+                                color: Colors.black,
+                                fontWeight: FontWeight.w700
+                            ),
+                            textAlign: TextAlign.start,
+                          ),
+                        ),
+                      ),
+
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 15),
+                        child: SizedBox(
+                          height: 260, // Sesuaikan tinggi container sesuai kebutuhan Anda
+                          child: ListView.builder(
+                            scrollDirection: Axis.horizontal,
+                            itemCount: bukuList?.length,
+                            itemBuilder: (context, index) {
+                              Buku buku = bukuList![index];
+                              return Padding(
+                                padding: const EdgeInsets.only(right: 10.0),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    SizedBox(
+                                      width: 120, // Sesuaikan lebar gambar sesuai kebutuhan Anda
+                                      height: 175, // Sesuaikan tinggi gambar sesuai kebutuhan Anda
+                                      child: AspectRatio(
+                                        aspectRatio: 4 / 5,
+                                        child: Image.network(
+                                          buku.coverBuku.toString(),
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                    ),
+                                    const SizedBox(height: 8),
+                                    FittedBox(
+                                      child: Text(
+                                        buku.judul!,
+                                        style: GoogleFonts.inriaSans(
+                                            fontWeight: FontWeight.w600,
+                                            color: Colors.black,
+                                            fontSize: 14.0
+                                        ),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    ),
+
+                                    const SizedBox(height: 4),
+
+                                    FittedBox(
+                                      child: Text(
+                                        "Penulis : ${buku.penulis!}",
+                                        style: GoogleFonts.inriaSans(
+                                            fontWeight: FontWeight.w600,
+                                            color: Colors.black,
+                                            fontSize: 10.0
+                                        ),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    ),
+
+                                    const SizedBox(height: 4),
+
+                                    FittedBox(
+                                      child: Text(
+                                        "Penerbit : ${buku.penerbit!}",
+                                        style: GoogleFonts.inriaSans(
+                                            fontWeight: FontWeight.w600,
+                                            color: Colors.black,
+                                            fontSize: 10.0
+                                        ),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    ),
+
+                                    const SizedBox(height: 5),
+
+                                    // Menampilkan rating di bawah teks penulis
+                                    buku.rating != null && buku.rating! > 0
+                                        ? RatingBar.builder(
+                                      initialRating: buku.rating!,
+                                      minRating: 1,
+                                      direction: Axis.horizontal,
+                                      allowHalfRating: true,
+                                      itemCount: 5,
+                                      itemSize: 15,
+                                      itemBuilder: (context, _) => const Icon(
+                                        Icons.star,
+                                        color: Colors.amber,
+                                      ),
+                                      onRatingUpdate: (rating) {
+                                        print(rating);
+                                        // Lakukan tindakan setelah pengguna mengupdate rating
+                                      },
+                                    )
+                                        : RatingBar.builder(
+                                      initialRating: 5,
+                                      minRating: 1,
+                                      direction: Axis.horizontal,
+                                      allowHalfRating: true,
+                                      itemCount: 5,
+                                      itemSize: 15,
+                                      itemBuilder: (context, _) => const Icon(
+                                        Icons.star,
+                                        color: Colors.grey,
+                                      ),
+                                      onRatingUpdate: (rating) {
+                                        print(rating);
+                                        // Lakukan tindakan setelah pengguna mengupdate rating
+                                      },
+                                    ),
+                                  ],
+                                ),
+                              );
+                            },
+                          ),
+                        ),
+                      ),
+                    ],
+                  );
+                },
+              );
+            }
+          }
+          )
         ],
       ),
     );

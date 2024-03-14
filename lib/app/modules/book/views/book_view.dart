@@ -14,40 +14,40 @@ class BookView extends GetView<BookController> {
         title: const Text('BookView'),
         centerTitle: true,
       ),
-        body: controller.obx((state) => ListView.separated(
-          itemCount: state!.length,
-          itemBuilder: (context, index){
-            return ListTile(
-              title: Text("${state[index].judul}",
-              style: TextStyle(fontSize: 18),
-              ) ,
-              subtitle: Text("Penulis: ${state[index].penulis}",
-                style: TextStyle(fontSize: 14),
-              ),
-              trailing: ElevatedButton(
-                child: Text("Pinjam"),
-                onPressed: (){
-                  Get.toNamed(Routes.ADD_PEMINJAMAN, parameters: {
-                    'id': (state[index].id??0).toString(),
-                    'judul': state[index].judul??"-"
-                  });
-                },
-                style: ElevatedButton.styleFrom(
-                  primary: Colors.blue,
-                      onPrimary: Colors.white,
-                  padding:
-                    EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                    shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
-                ),
-                ),
-              ),
-            );
-          },
-          separatorBuilder: (context, index){
-            return Divider();
-          },
-        )),
+      // body: controller.obx((state) => ListView.separated(
+      //     itemCount: state!.length,
+      //     itemBuilder: (context, index){
+      //       return ListTile(
+      //         title: Text("${state[index].judul}",
+      //         style: TextStyle(fontSize: 18),
+      //         ) ,
+      //         subtitle: Text("Penulis: ${state[index].penulis}",
+      //           style: TextStyle(fontSize: 14),
+      //         ),
+      //         trailing: ElevatedButton(
+      //           child: Text("Pinjam"),
+      //           onPressed: (){
+      //             Get.toNamed(Routes.ADD_PEMINJAMAN, parameters: {
+      //               'id': (state[index].id??0).toString(),
+      //               'judul': state[index].judul??"-"
+      //             });
+      //           },
+      //           style: ElevatedButton.styleFrom(
+      //             primary: Colors.blue,
+      //                 onPrimary: Colors.white,
+      //             padding:
+      //               EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+      //               shape: RoundedRectangleBorder(
+      //               borderRadius: BorderRadius.circular(20),
+      //           ),
+      //           ),
+      //         ),
+      //       );
+      //     },
+      //     separatorBuilder: (context, index){
+      //       return Divider();
+      //     },
+      //   )),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: 1, // Indeks halaman yang terpilih
         onTap: (index) {
@@ -79,7 +79,7 @@ class BookView extends GetView<BookController> {
             icon: Icon(Icons.library_books), // Ikon untuk item ketiga
             label: '', // Label untuk item ketiga
           ),BottomNavigationBarItem(
-            icon: Icon(Icons.collections), // Ikon untuk item ketiga
+            icon: Icon(Icons.bookmark), // Ikon untuk item ketiga
             label: '', // Label untuk item ketiga
           ),
         ],

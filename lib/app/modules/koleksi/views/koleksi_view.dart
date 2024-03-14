@@ -51,7 +51,7 @@ class KoleksiView extends GetView<KoleksiController> {
             label: 'Peminjaman', // Label untuk item ketiga
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.collections_bookmark), // Ikon untuk item ketiga
+            icon: Icon(Icons.bookmark), // Ikon untuk item ketiga
             label: 'koleksi', // Label untuk item ketiga
           ),
         ],

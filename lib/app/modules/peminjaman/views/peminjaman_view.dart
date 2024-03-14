@@ -63,7 +63,7 @@ class PeminjamanView extends GetView<PeminjamanController> {
             icon: Icon(Icons.library_books), // Ikon untuk item ketiga
             label: 'Peminjaman', // Label untuk item ketiga
           ),BottomNavigationBarItem(
-            icon: Icon(Icons.collections), // Ikon untuk item ketiga
+            icon: Icon(Icons.bookmark), // Ikon untuk item ketiga
             label: '', // Label untuk item ketiga
           ),
         ],

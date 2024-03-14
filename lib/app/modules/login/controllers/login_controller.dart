@@ -61,6 +61,7 @@ class LoginController extends GetxController {
           await StorageProvider.write(StorageKey.status, "logged");
           await StorageProvider.write(StorageKey.idUser, responseLogin.data!.id.toString());
           await StorageProvider.write(StorageKey.username, responseLogin.data!.username.toString());
+          await StorageProvider.write(StorageKey.tokenUser, responseLogin.data!.token.toString());
           Get.offAllNamed(Routes.HOME);
         } else {
           Get.snackbar("Sorry", "Login Gagal", backgroundColor: Colors.orange);
