@@ -6,6 +6,8 @@ import '../modules/book/bindings/book_binding.dart';
 import '../modules/book/views/book_view.dart';
 import '../modules/dashboard/bindings/dashboard_binding.dart';
 import '../modules/dashboard/views/dashboard_view.dart';
+import '../modules/detail_buku/bindings/detail_buku_binding.dart';
+import '../modules/detail_buku/views/detail_buku_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/koleksi/bindings/koleksi_binding.dart';
@@ -14,11 +16,12 @@ import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
 import '../modules/peminjaman/bindings/peminjaman_binding.dart';
 import '../modules/peminjaman/views/peminjaman_view.dart';
+import '../modules/pencarian/bindings/pencarian_binding.dart';
+import '../modules/pencarian/views/pencarian_view.dart';
 import '../modules/profile/bindings/profile_binding.dart';
 import '../modules/profile/views/profile_view.dart';
 import '../modules/register/bindings/register_binding.dart';
 import '../modules/register/views/register_view.dart';
-
 part 'app_routes.dart';
 
 class AppPages {
@@ -71,6 +74,16 @@ class AppPages {
       name: _Paths.PROFILE,
       page: () => const ProfileView(),
       binding: ProfileBinding(),
+    ),
+    GetPage(
+      name: _Paths.DETAIL_BUKU,
+      page: () => const DetailBukuView(),
+      binding: DetailBukuBinding(),
+    ),
+    GetPage(
+      name: _Paths.PENCARIAN,
+      page: () => const PencarianView(),
+      binding: PencarianBinding(),
     ),
   ];
 }

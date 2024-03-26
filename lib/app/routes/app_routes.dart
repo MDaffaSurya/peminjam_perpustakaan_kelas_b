@@ -13,6 +13,9 @@ abstract class Routes {
   static const BOTTOM_NAVIGATION_BAR = _Paths.BOTTOM_NAVIGATION_BAR;
   static const DASHBOARD = _Paths.DASHBOARD;
   static const PROFILE = _Paths.PROFILE;
+  static const DETAIL_BUKU = _Paths.DETAIL_BUKU;
+  static const SEARCH = _Paths.SEARCH;
+  static const PENCARIAN = _Paths.PENCARIAN;
 }
 
 abstract class _Paths {
@@ -27,4 +30,7 @@ abstract class _Paths {
   static const BOTTOM_NAVIGATION_BAR = '/bottom-navigation-bar';
   static const DASHBOARD = '/dashboard';
   static const PROFILE = '/profile';
+  static const DETAIL_BUKU = '/detail-buku';
+  static const SEARCH = '/search';
+  static const PENCARIAN = '/pencarian';
 }

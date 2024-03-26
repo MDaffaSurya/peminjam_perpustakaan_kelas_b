@@ -44,18 +44,10 @@ class HomeView extends GetView<HomeController> {
             ),
           ],
         ),
-        // actions: [
-        //   IconButton(
-        //     onPressed: () {
-        //       Get.offAllNamed(Routes.LOGIN);
-        //     },
-        //     icon: Icon(Icons.logout),
-        //   ),
-        // ],
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15),
+          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
           child: kontenSemuaBuku(),
         ),
       ),
@@ -65,22 +57,22 @@ class HomeView extends GetView<HomeController> {
           if (index == 0) {
             return;
           } else if (index == 1) {
-            Get.toNamed(Routes.BOOK);
+            Get.toNamed(Routes.PENCARIAN);
           } else if (index == 2) {
             Get.toNamed(Routes.PEMINJAMAN);
           } else if (index == 3) {
             Get.toNamed(Routes.KOLEKSI);
           }
         },
-        selectedItemColor: Colors.purple, // Warna ikon yang dipilih
-        unselectedItemColor: Colors.grey, // Warna ikon yang tidak dipilih
+        selectedItemColor: Colors.purple,
+        unselectedItemColor: Colors.grey,
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.book),
+            icon: Icon(Icons.search),
             label: '',
           ),
           BottomNavigationBarItem(
@@ -95,8 +87,9 @@ class HomeView extends GetView<HomeController> {
       ),
     );
   }
-  Widget kontenSemuaBuku(){
-    return  Padding(
+
+  Widget kontenSemuaBuku() {
+    return Padding(
       padding: const EdgeInsets.only(bottom: 20),
       child: Column(
         children: [
@@ -117,12 +110,12 @@ class HomeView extends GetView<HomeController> {
                   valueColor: AlwaysStoppedAnimation<Color>(Color(0xFFEA1818)),
                 ),
               );
-            }else{
+            } else {
               return ListView.builder(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
                 itemCount: state.length,
-                itemBuilder: (context, index){
+                itemBuilder: (context, index) {
                   var kategori = state[index].kategoriBuku;
                   var bukuList = state[index].buku;
                   return Column(
@@ -142,110 +135,109 @@ class HomeView extends GetView<HomeController> {
                           ),
                         ),
                       ),
-
                       Padding(
                         padding: const EdgeInsets.only(bottom: 15),
                         child: SizedBox(
-                          height: 260, // Sesuaikan tinggi container sesuai kebutuhan Anda
+                          height: 260,
                           child: ListView.builder(
                             scrollDirection: Axis.horizontal,
                             itemCount: bukuList?.length,
                             itemBuilder: (context, index) {
                               Buku buku = bukuList![index];
-                              return Padding(
-                                padding: const EdgeInsets.only(right: 10.0),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    SizedBox(
-                                      width: 120, // Sesuaikan lebar gambar sesuai kebutuhan Anda
-                                      height: 175, // Sesuaikan tinggi gambar sesuai kebutuhan Anda
-                                      child: AspectRatio(
-                                        aspectRatio: 4 / 5,
-                                        child: Image.network(
-                                          buku.coverBuku.toString(),
-                                          fit: BoxFit.cover,
+                              return GestureDetector(
+                                onTap: () {
+                                  Get.toNamed(Routes.DETAIL_BUKU,
+                                  parameters: {
+                                    'id': buku.bukuID.toString(),
+                                    'judul': buku.judul.toString()
+                                  });
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.only(right: 10.0),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      SizedBox(
+                                        width: 120,
+                                        height: 175,
+                                        child: AspectRatio(
+                                          aspectRatio: 4 / 5,
+                                          child: Image.network(
+                                            buku.coverBuku.toString(),
+                                            fit: BoxFit.cover,
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                    const SizedBox(height: 8),
-                                    FittedBox(
-                                      child: Text(
-                                        buku.judul!,
-                                        style: GoogleFonts.inriaSans(
-                                            fontWeight: FontWeight.w600,
-                                            color: Colors.black,
-                                            fontSize: 14.0
+                                      const SizedBox(height: 8),
+                                      FittedBox(
+                                        child: Text(
+                                          buku.judul!,
+                                          style: GoogleFonts.inriaSans(
+                                              fontWeight: FontWeight.w600,
+                                              color: Colors.black,
+                                              fontSize: 14.0
+                                          ),
+                                          textAlign: TextAlign.center,
                                         ),
-                                        textAlign: TextAlign.center,
                                       ),
-                                    ),
-
-                                    const SizedBox(height: 4),
-
-                                    FittedBox(
-                                      child: Text(
-                                        "Penulis : ${buku.penulis!}",
-                                        style: GoogleFonts.inriaSans(
-                                            fontWeight: FontWeight.w600,
-                                            color: Colors.black,
-                                            fontSize: 10.0
+                                      const SizedBox(height: 4),
+                                      FittedBox(
+                                        child: Text(
+                                          "Penulis : ${buku.penulis!}",
+                                          style: GoogleFonts.inriaSans(
+                                              fontWeight: FontWeight.w600,
+                                              color: Colors.black,
+                                              fontSize: 10.0
+                                          ),
+                                          textAlign: TextAlign.center,
                                         ),
-                                        textAlign: TextAlign.center,
                                       ),
-                                    ),
-
-                                    const SizedBox(height: 4),
-
-                                    FittedBox(
-                                      child: Text(
-                                        "Penerbit : ${buku.penerbit!}",
-                                        style: GoogleFonts.inriaSans(
-                                            fontWeight: FontWeight.w600,
-                                            color: Colors.black,
-                                            fontSize: 10.0
+                                      const SizedBox(height: 4),
+                                      FittedBox(
+                                        child: Text(
+                                          "Penerbit : ${buku.penerbit!}",
+                                          style: GoogleFonts.inriaSans(
+                                              fontWeight: FontWeight.w600,
+                                              color: Colors.black,
+                                              fontSize: 10.0
+                                          ),
+                                          textAlign: TextAlign.center,
                                         ),
-                                        textAlign: TextAlign.center,
                                       ),
-                                    ),
-
-                                    const SizedBox(height: 5),
-
-                                    // Menampilkan rating di bawah teks penulis
-                                    buku.rating != null && buku.rating! > 0
-                                        ? RatingBar.builder(
-                                      initialRating: buku.rating!,
-                                      minRating: 1,
-                                      direction: Axis.horizontal,
-                                      allowHalfRating: true,
-                                      itemCount: 5,
-                                      itemSize: 15,
-                                      itemBuilder: (context, _) => const Icon(
-                                        Icons.star,
-                                        color: Colors.amber,
+                                      const SizedBox(height: 5),
+                                      buku.rating != null && buku.rating! > 0
+                                          ? RatingBar.builder(
+                                        initialRating: buku.rating!,
+                                        minRating: 1,
+                                        direction: Axis.horizontal,
+                                        allowHalfRating: true,
+                                        itemCount: 5,
+                                        itemSize: 15,
+                                        itemBuilder: (context, _) => const Icon(
+                                          Icons.star,
+                                          color: Colors.amber,
+                                        ),
+                                        onRatingUpdate: (rating) {
+                                          print(rating);
+                                        },
+                                      )
+                                          : RatingBar.builder(
+                                        initialRating: 5,
+                                        minRating: 1,
+                                        direction: Axis.horizontal,
+                                        allowHalfRating: true,
+                                        itemCount: 5,
+                                        itemSize: 15,
+                                        itemBuilder: (context, _) => const Icon(
+                                          Icons.star,
+                                          color: Colors.grey,
+                                        ),
+                                        onRatingUpdate: (rating) {
+                                          print(rating);
+                                        },
                                       ),
-                                      onRatingUpdate: (rating) {
-                                        print(rating);
-                                        // Lakukan tindakan setelah pengguna mengupdate rating
-                                      },
-                                    )
-                                        : RatingBar.builder(
-                                      initialRating: 5,
-                                      minRating: 1,
-                                      direction: Axis.horizontal,
-                                      allowHalfRating: true,
-                                      itemCount: 5,
-                                      itemSize: 15,
-                                      itemBuilder: (context, _) => const Icon(
-                                        Icons.star,
-                                        color: Colors.grey,
-                                      ),
-                                      onRatingUpdate: (rating) {
-                                        print(rating);
-                                        // Lakukan tindakan setelah pengguna mengupdate rating
-                                      },
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
                               );
                             },
@@ -257,8 +249,7 @@ class HomeView extends GetView<HomeController> {
                 },
               );
             }
-          }
-          )
+          }),
         ],
       ),
     );

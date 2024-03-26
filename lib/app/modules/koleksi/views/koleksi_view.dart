@@ -29,7 +29,7 @@ class KoleksiView extends GetView<KoleksiController> {
             Get.offAllNamed(Routes.HOME);
           } else if (index == 1) {
             // Jika item ketiga ditekan, navigasi ke halaman Book
-            Get.toNamed(Routes.BOOK);
+            Get.toNamed(Routes.PENCARIAN);
           } else if (index == 2) {
             // Jika item ketiga ditekan, navigasi ke halaman Book
             Get.toNamed(Routes.PEMINJAMAN);
@@ -43,7 +43,7 @@ class KoleksiView extends GetView<KoleksiController> {
             label: 'Home', // Label untuk item pertama
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.book), // Ikon untuk item kedua
+            icon: Icon(Icons.search), // Ikon untuk item kedua
             label: 'Book', // Label untuk item kedua
           ),
           BottomNavigationBarItem(
