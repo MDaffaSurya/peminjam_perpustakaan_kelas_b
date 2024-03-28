@@ -9,4 +9,5 @@ class Endpoint {
   static const String bookPopular = "${baseUrlApi}popular/buku";
   static const String pinjam = "${baseUrlApi}pinjam";
   static const String detaibook = "${baseUrlApi}buku/detail";
+  static const String ulasan = "${baseUrlApi}ulasan";
 }

@@ -1,60 +1,113 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 
 import '../../../routes/app_pages.dart';
-import '../controllers/koleksi_controller.dart';
 
-class KoleksiView extends GetView<KoleksiController> {
+class KoleksiView extends StatelessWidget {
   const KoleksiView({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('KoleksiView'),
+        title: const Text('Koleksi Buku'),
         centerTitle: true,
       ),
-      body: const Center(
-        child: Text(
-          'KoleksiView is working',
-          style: TextStyle(fontSize: 20),
-        ),
+      body: ListView.builder(
+        padding: EdgeInsets.all(10),
+        itemCount: 8, // Jumlah buku dalam koleksi
+        itemBuilder: (context, index) {
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            child: _buildBookCard(),
+          );
+        },
       ),
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 3, // Indeks halaman yang terpilih
+        currentIndex: 3,
         onTap: (index) {
-          // Fungsi yang dipanggil ketika item bottom navigation bar ditekan
           if (index == 0) {
-            // Jika item pertama ditekan, navigasi ke halaman home
             Get.offAllNamed(Routes.HOME);
           } else if (index == 1) {
-            // Jika item ketiga ditekan, navigasi ke halaman Book
             Get.toNamed(Routes.PENCARIAN);
           } else if (index == 2) {
-            // Jika item ketiga ditekan, navigasi ke halaman Book
             Get.toNamed(Routes.PEMINJAMAN);
           }
         },
-        selectedItemColor: Colors.purple, // Warna ikon yang dipilih
-        unselectedItemColor: Colors.grey, // Warna ikon yang tidak dipilih
+        selectedItemColor: Colors.purple,
+        unselectedItemColor: Colors.grey,
         items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home), // Ikon untuk item pertama
-            label: 'Home', // Label untuk item pertama
+            icon: Icon(Icons.home),
+            label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.search), // Ikon untuk item kedua
-            label: 'Book', // Label untuk item kedua
+            icon: Icon(Icons.search),
+            label: 'Cari',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.library_books), // Ikon untuk item ketiga
-            label: 'Peminjaman', // Label untuk item ketiga
+            icon: Icon(Icons.library_books),
+            label: 'Peminjaman',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.bookmark), // Ikon untuk item ketiga
-            label: 'koleksi', // Label untuk item ketiga
+            icon: Icon(Icons.bookmark),
+            label: 'Koleksi',
           ),
         ],
+      ),
+    );
+  }
+
+  Widget _buildBookCard() {
+    return GestureDetector(
+      onTap: () {
+        // Implementasi logika untuk menavigasi ke detail buku
+      },
+      child: Card(
+        elevation: 3,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(15),
+        ),
+        child: Row(
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.horizontal(
+                left: Radius.circular(15),
+              ),
+              child: Image.network(
+                'https://perpustakaan.kemendagri.go.id/opac/lib/minigalnano/createthumb.php?filename=images/docs/Sejarah_Dunia_yang_Disembunyikan.jpg.jpg&width=200', // URL gambar sampul buku
+                fit: BoxFit.cover,
+                height: 100,
+                width: 80,
+              ),
+            ),
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Judul Buku', // Judul buku
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    SizedBox(height: 4),
+                    Text(
+                      'Penulis Buku', // Penulis buku
+                      style: TextStyle(
+                        color: Colors.grey,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -222,9 +222,9 @@ class Buku {
   String? penerbit;
   String? tahunTerbit;
   String? jumlahHalaman;
-  int? rating;
+  double? rating;
   int? totalUlasan;
-  int? jumlahRating;
+  double? jumlahRating;
   int? jumlahPeminjam;
 
   Map<String, dynamic> toJson() {

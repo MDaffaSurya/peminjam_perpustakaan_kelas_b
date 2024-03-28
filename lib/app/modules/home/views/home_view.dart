@@ -154,89 +154,100 @@ class HomeView extends GetView<HomeController> {
                                 },
                                 child: Padding(
                                   padding: const EdgeInsets.only(right: 10.0),
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      SizedBox(
-                                        width: 120,
-                                        height: 175,
-                                        child: AspectRatio(
-                                          aspectRatio: 4 / 5,
-                                          child: Image.network(
-                                            buku.coverBuku.toString(),
-                                            fit: BoxFit.cover,
+                                  child: Container(
+                                    width: 135,
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Expanded(
+                                          child: SizedBox(
+                                            width: 135,
+                                            height: 175,
+                                            child: AspectRatio(
+                                              aspectRatio: 4 / 5,
+                                              child: Image.network(
+                                                buku.coverBuku.toString(),
+                                                fit: BoxFit.cover,
+                                              ),
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                      const SizedBox(height: 8),
-                                      FittedBox(
-                                        child: Text(
-                                          buku.judul!,
-                                          style: GoogleFonts.inriaSans(
-                                              fontWeight: FontWeight.w600,
-                                              color: Colors.black,
-                                              fontSize: 14.0
-                                          ),
-                                          textAlign: TextAlign.center,
+                                        const SizedBox(height: 8),
+                                        Column(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            FittedBox(
+                                              child: Text(
+                                                buku.judul!,
+                                                style: GoogleFonts.inriaSans(
+                                                    fontWeight: FontWeight.w600,
+                                                    color: Colors.black,
+                                                    fontSize: 14.0
+                                                ),
+                                                textAlign: TextAlign.center,
+                                              ),
+                                            ),const SizedBox(height: 4),
+                                            FittedBox(
+                                              child: Text(
+                                                "Penulis : ${buku.penulis!}",
+                                                style: GoogleFonts.inriaSans(
+                                                    fontWeight: FontWeight.w600,
+                                                    color: Colors.black,
+                                                    fontSize: 10.0
+                                                ),
+                                                textAlign: TextAlign.center,
+                                              ),
+                                            ),
+                                            const SizedBox(height: 4),
+                                            FittedBox(
+                                              child: Text(
+                                                "Penerbit : ${buku.penerbit!}",
+                                                style: GoogleFonts.inriaSans(
+                                                    fontWeight: FontWeight.w600,
+                                                    color: Colors.black,
+                                                    fontSize: 10.0
+                                                ),
+                                                textAlign: TextAlign.center,
+                                              ),
+                                            ),
+                                            const SizedBox(height: 5),
+                                            buku.rating != null && buku.rating! > 0
+                                                ? RatingBar.builder(
+                                              initialRating: buku.rating!,
+                                              minRating: 1,
+                                              direction: Axis.horizontal,
+                                              allowHalfRating: true,
+                                              itemCount: 5,
+                                              itemSize: 15,
+                                              itemBuilder: (context, _) => const Icon(
+                                                Icons.star,
+                                                color: Colors.amber,
+                                              ),
+                                              onRatingUpdate: (rating) {
+                                                print(rating);
+                                              },
+                                            )
+                                                : RatingBar.builder(
+                                              initialRating: 5,
+                                              minRating: 1,
+                                              direction: Axis.horizontal,
+                                              allowHalfRating: true,
+                                              itemCount: 5,
+                                              itemSize: 15,
+                                              itemBuilder: (context, _) => const Icon(
+                                                Icons.star,
+                                                color: Colors.grey,
+                                              ),
+                                              onRatingUpdate: (rating) {
+                                                print(rating);
+                                              },
+                                            ),
+                                          ],
                                         ),
-                                      ),
-                                      const SizedBox(height: 4),
-                                      FittedBox(
-                                        child: Text(
-                                          "Penulis : ${buku.penulis!}",
-                                          style: GoogleFonts.inriaSans(
-                                              fontWeight: FontWeight.w600,
-                                              color: Colors.black,
-                                              fontSize: 10.0
-                                          ),
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      ),
-                                      const SizedBox(height: 4),
-                                      FittedBox(
-                                        child: Text(
-                                          "Penerbit : ${buku.penerbit!}",
-                                          style: GoogleFonts.inriaSans(
-                                              fontWeight: FontWeight.w600,
-                                              color: Colors.black,
-                                              fontSize: 10.0
-                                          ),
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      ),
-                                      const SizedBox(height: 5),
-                                      buku.rating != null && buku.rating! > 0
-                                          ? RatingBar.builder(
-                                        initialRating: buku.rating!,
-                                        minRating: 1,
-                                        direction: Axis.horizontal,
-                                        allowHalfRating: true,
-                                        itemCount: 5,
-                                        itemSize: 15,
-                                        itemBuilder: (context, _) => const Icon(
-                                          Icons.star,
-                                          color: Colors.amber,
-                                        ),
-                                        onRatingUpdate: (rating) {
-                                          print(rating);
-                                        },
-                                      )
-                                          : RatingBar.builder(
-                                        initialRating: 5,
-                                        minRating: 1,
-                                        direction: Axis.horizontal,
-                                        allowHalfRating: true,
-                                        itemCount: 5,
-                                        itemSize: 15,
-                                        itemBuilder: (context, _) => const Icon(
-                                          Icons.star,
-                                          color: Colors.grey,
-                                        ),
-                                        onRatingUpdate: (rating) {
-                                          print(rating);
-                                        },
-                                      ),
-                                    ],
+
+                                      ],
+                                    ),
                                   ),
                                 ),
                               );
