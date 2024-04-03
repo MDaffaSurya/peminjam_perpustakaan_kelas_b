@@ -65,11 +65,11 @@ class AppPages {
       page: () => const KoleksiView(),
       binding: KoleksiBinding(),
     ),
-    GetPage(
-      name: _Paths.DASHBOARD,
-      page: () => const DashboardView(),
-      binding: DashboardBinding(),
-    ),
+    // GetPage(
+    //   name: _Paths.DASHBOARD,
+    //   page: () => const DashboardView(),
+    //   binding: DashboardBinding(),
+    // ),
     GetPage(
       name: _Paths.PROFILE,
       page: () => const ProfileView(),

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
+import 'package:flutter_rating_bar/flutter_rating_bar.dart'; // Import untuk Flutter Rating Bar
 import '../../../routes/app_pages.dart';
+import '../controllers/koleksi_controller.dart';
 
-class KoleksiView extends StatelessWidget {
+class KoleksiView extends GetView<KoleksiController> {
   const KoleksiView({Key? key}) : super(key: key);
 
   @override
@@ -13,15 +14,13 @@ class KoleksiView extends StatelessWidget {
         title: const Text('Koleksi Buku'),
         centerTitle: true,
       ),
-      body: ListView.builder(
-        padding: EdgeInsets.all(10),
-        itemCount: 8, // Jumlah buku dalam koleksi
-        itemBuilder: (context, index) {
-          return Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8.0),
-            child: _buildBookCard(),
-          );
-        },
+      body: SingleChildScrollView(
+        child: SizedBox(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+            child: datakoleksibuku(),
+          ),
+        ),
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: 3,
@@ -58,57 +57,112 @@ class KoleksiView extends StatelessWidget {
     );
   }
 
-  Widget _buildBookCard() {
-    return GestureDetector(
-      onTap: () {
-        // Implementasi logika untuk menavigasi ke detail buku
-      },
-      child: Card(
-        elevation: 3,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(15),
-        ),
-        child: Row(
-          children: [
-            ClipRRect(
-              borderRadius: BorderRadius.horizontal(
-                left: Radius.circular(15),
-              ),
-              child: Image.network(
-                'https://perpustakaan.kemendagri.go.id/opac/lib/minigalnano/createthumb.php?filename=images/docs/Sejarah_Dunia_yang_Disembunyikan.jpg.jpg&width=200', // URL gambar sampul buku
-                fit: BoxFit.cover,
-                height: 100,
-                width: 80,
-              ),
-            ),
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Judul Buku', // Judul buku
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
+  Widget datakoleksibuku() {
+    return Obx(() {
+      if (controller.datakoleksibuku.isNull) {
+        return Center(
+          child: CircularProgressIndicator(
+            color: Colors.black,
+            backgroundColor: Colors.grey,
+            valueColor: AlwaysStoppedAnimation<Color>(Color(0xFFEA1818)),
+          ),
+        );
+      } else if (controller.datakoleksibuku.value == null) {
+        return Center(
+          child: CircularProgressIndicator(
+            color: Colors.black,
+            backgroundColor: Colors.grey,
+            valueColor: AlwaysStoppedAnimation<Color>(Color(0xFFEA1818)),
+          ),
+        );
+      } else {
+        return SingleChildScrollView(
+          child: Column(
+            children: List.generate(controller.datakoleksibuku.length, (index) {
+              var koleksi = controller.datakoleksibuku[index];
+              return InkWell(
+                onTap: () {
+                  Get.toNamed(Routes.DETAIL_BUKU,
+                      parameters: {
+                        'id': koleksi.bukuID.toString(),
+                        'judul': koleksi.judul.toString()
+                      });
+                },
+                child: Card(
+                  elevation: 3,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  child: Row(
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.horizontal(
+                          left: Radius.circular(15),
+                        ),
+                        child: Image.network(
+                          koleksi.coverBuku.toString(),
+                          fit: BoxFit.cover,
+                          height: 100,
+                          width: 80,
+                        ),
                       ),
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                    SizedBox(height: 4),
-                    Text(
-                      'Penulis Buku', // Penulis buku
-                      style: TextStyle(
-                        color: Colors.grey,
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                koleksi.judul.toString(), // Judul buku
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                ),
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                              SizedBox(height: 4),
+                              Text(
+                                koleksi.penulis.toString(), // Penulis buku
+                                style: TextStyle(
+                                  color: Colors.grey,
+                                ),
+                              ),
+                              SizedBox(height: 4),
+                              RatingBar.builder(
+                                initialRating: koleksi.rating ?? 0,
+                                minRating: 0,
+                                direction: Axis.horizontal,
+                                allowHalfRating: true,
+                                itemCount: 5,
+                                itemSize: 20,
+                                itemPadding: EdgeInsets.symmetric(horizontal: 1.0),
+                                itemBuilder: (context, _) => Icon(
+                                  Icons.star,
+                                  color: Colors.amber,
+                                ),
+                                onRatingUpdate: (rating) {
+                                  print(rating);
+                                },
+                              ),
+                              SizedBox(height: 4),
+                              Text(
+                                '(${koleksi.totalUlasan ?? 0} ulasan)', // Jumlah rating
+                                style: TextStyle(
+                                  color: Colors.grey,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
+              );
+            }),
+          ),
+        );
+      }
+    });
   }
 }

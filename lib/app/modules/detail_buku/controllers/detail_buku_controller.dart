@@ -139,4 +139,38 @@ class DetailBukuController extends GetxController with StateMixin {
     Get.snackbar("Error", e.toString(), backgroundColor: Colors.red);
     }
   }
+  simpanbuku() async{
+    loading(true);
+    try{
+      FocusScope.of(Get.context!).unfocus();
+      var userID = StorageProvider.read(StorageKey.idUser).toString();
+      var bukuID = Get.parameters['id'].toString();
+
+      var response = await ApiProvider.instance().post(
+        Endpoint.koleksi,
+        data: {
+          "UserID": userID,
+          "BukuID": bukuID,
+        },
+      );
+      if(response.statusCode == 201){
+        getDataDetailBuku(id);
+        Get.snackbar("Success 👍", "simpan berhasil", backgroundColor: Colors.green);
+      } else {
+        Get.snackbar("Sorry", "simpan Gagal",backgroundColor: Colors.orange);
+      }
+      loading(false);
+    } on DioException catch(e){
+      loading(false);
+      if (e.response!= null){
+        if (e.response?.data!= null){
+          Get.snackbar("Sorry", "${e.response?.data['message']}",backgroundColor: Colors.orange);
+        }
+      } else {
+        Get.snackbar("Sorry", e.message ?? "",backgroundColor: Colors.red);
+      }
+    } catch (e) {loading(false);
+    Get.snackbar("Error", e.toString(), backgroundColor: Colors.red);
+    }
+  }
 }

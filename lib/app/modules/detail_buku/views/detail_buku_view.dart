@@ -130,6 +130,13 @@ class DetailBukuView extends GetView<DetailBukuController> {
                                 print(rating);
                               },
                             ),
+                            SizedBox(width: 5),
+                            Text(
+                              '(${databuku.totalUlasan ?? 0} ulasan)',
+                              style: TextStyle(
+                                color: Colors.grey,
+                              ),
+                            ),
                           ],
                         ),
                         SizedBox(height: 10),
@@ -163,9 +170,14 @@ class DetailBukuView extends GetView<DetailBukuController> {
                                   borderRadius: BorderRadius.circular(8), // Bentuk tombol
                                 ),
                               ),
-                              child: Text(
-                                'Simpan',
-                                style: TextStyle(color: Colors.white), // Ubah warna teks menjadi putih
+                              child: InkWell(
+                                onTap: (){
+                                  controller.simpanbuku();
+                                },
+                                child: Text(
+                                  'Simpan',
+                                  style: TextStyle(color: Colors.white), // Ubah warna teks menjadi putih
+                                ),
                               ), // Teks tombol
                             ),
                           ],
