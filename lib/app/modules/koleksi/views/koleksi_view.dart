@@ -28,9 +28,9 @@ class KoleksiView extends GetView<KoleksiController> {
           if (index == 0) {
             Get.offAllNamed(Routes.HOME);
           } else if (index == 1) {
-            Get.toNamed(Routes.PENCARIAN);
+            Get.offAllNamed(Routes.PENCARIAN);
           } else if (index == 2) {
-            Get.toNamed(Routes.PEMINJAMAN);
+            Get.offAllNamed(Routes.HISTORY_PINJAM);
           }
         },
         selectedItemColor: Colors.purple,

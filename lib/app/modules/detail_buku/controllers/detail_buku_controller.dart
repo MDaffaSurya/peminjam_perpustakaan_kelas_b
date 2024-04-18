@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:peminjam_perpustakaan_kelas_b/app/data/model/response_detail_book.dart';
 
 import '../../../data/constant/endpoint.dart';
@@ -13,6 +14,7 @@ class DetailBukuController extends GetxController with StateMixin {
   final id = Get.parameters['id'];
 
   final loading = false.obs;
+  final loadingpinjam = false.obs;
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final TextEditingController ulasanController = TextEditingController();
   final TextEditingController ratingController = TextEditingController();
@@ -21,9 +23,21 @@ class DetailBukuController extends GetxController with StateMixin {
   final reviewController = TextEditingController();
   final userRating = 0.0.obs;
 
+  late String formattedToday;
+  late String formattedTwoWeeksLater;
+
   @override
   void onInit() {
     super.onInit();
+    // Get Tanggal hari ini
+    DateTime todayDay = DateTime.now();
+
+    // Menambahkan 14 hari ke tanggal hari ini
+    DateTime twoWeeksLater = todayDay.add(const Duration(days: 14));
+
+    // Format tanggal menjadi string menggunakan intl package
+    formattedToday = DateFormat('yyyy-MM-dd').format(todayDay);
+    formattedTwoWeeksLater = DateFormat('yyyy-MM-dd').format(twoWeeksLater);
     getDataDetailBuku(id);
   }
 
@@ -173,4 +187,39 @@ class DetailBukuController extends GetxController with StateMixin {
     Get.snackbar("Error", e.toString(), backgroundColor: Colors.red);
     }
   }
+  pinjam(String idbuku) async {
+    loadingpinjam(true);
+    try {
+      FocusScope.of(Get.context!).unfocus();
+
+      var response = await ApiProvider.instance().post(
+        Endpoint.pinjam,
+        data: {
+          "BukuID": idbuku,
+        },
+      );
+      if (response.statusCode == 200) {
+        getDataDetailBuku(id);
+        Get.snackbar(
+            "Success 👍", "pinjam berhasil", backgroundColor: Colors.green);
+      } else {
+        Get.snackbar("Sorry", "pinjam Gagal", backgroundColor: Colors.orange);
+      }
+      loadingpinjam(false);
+    } on DioException catch (e) {
+      loadingpinjam(false);
+      if (e.response != null) {
+        if (e.response?.data != null) {
+          Get.snackbar("Sorry", "${e.response?.data['message']}",
+              backgroundColor: Colors.orange);
+        }
+      } else {
+        Get.snackbar("Sorry", e.message ?? "", backgroundColor: Colors.red);
+      }
+    } catch (e) {
+      loadingpinjam(false);
+      Get.snackbar("Error", e.toString(), backgroundColor: Colors.red);
+    }
+  }
 }
+

@@ -57,11 +57,11 @@ class HomeView extends GetView<HomeController> {
           if (index == 0) {
             return;
           } else if (index == 1) {
-            Get.toNamed(Routes.PENCARIAN);
+            Get.offAllNamed(Routes.PENCARIAN);
           } else if (index == 2) {
-            Get.toNamed(Routes.PEMINJAMAN);
+            Get.offAllNamed(Routes.HISTORY_PINJAM);
           } else if (index == 3) {
-            Get.toNamed(Routes.KOLEKSI);
+            Get.offAllNamed(Routes.KOLEKSI);
           }
         },
         selectedItemColor: Colors.purple,

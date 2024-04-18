@@ -59,10 +59,10 @@ class PencarianView extends StatelessWidget {
             return;
           } else if (index == 2) {
             // Jika item ketiga ditekan, navigasi ke halaman Book
-            Get.toNamed(Routes.PEMINJAMAN);
+            Get.offAllNamed(Routes.HISTORY_PINJAM);
           }else if (index == 3) {
             // Jika item ketiga ditekan, navigasi ke halaman Book
-            Get.toNamed(Routes.KOLEKSI);
+            Get.offAllNamed(Routes.KOLEKSI);
           }
         },
         selectedItemColor: Colors.purple, // Warna ikon yang dipilih

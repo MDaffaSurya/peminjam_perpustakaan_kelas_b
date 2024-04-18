@@ -144,7 +144,12 @@ class DetailBukuView extends GetView<DetailBukuController> {
                           children: [
                             ElevatedButton(
                               onPressed: () {
-                                // Logika ketika tombol "Pinjam" ditekan
+                                showModalBottomSheet(
+                                    context: Get.context!,
+                                    builder: (BuildContext context){
+                                      return konfirmasiPeminjaman(databuku.judul.toString(), databuku.bukuID.toString());
+                                    }
+                                );
                               },
                               style: ElevatedButton.styleFrom(
                                 primary: Color(0xFF351A96), // Ubah warna latar belakang
@@ -161,7 +166,7 @@ class DetailBukuView extends GetView<DetailBukuController> {
                             SizedBox(width: 10),
                             ElevatedButton(
                               onPressed: () {
-                                // Logika ketika tombol "Simpan" ditekan
+                                controller.simpanbuku();
                               },
                               style: ElevatedButton.styleFrom(
                                 primary: Colors.grey, // Warna latar belakang
@@ -170,14 +175,9 @@ class DetailBukuView extends GetView<DetailBukuController> {
                                   borderRadius: BorderRadius.circular(8), // Bentuk tombol
                                 ),
                               ),
-                              child: InkWell(
-                                onTap: (){
-                                  controller.simpanbuku();
-                                },
-                                child: Text(
-                                  'Simpan',
-                                  style: TextStyle(color: Colors.white), // Ubah warna teks menjadi putih
-                                ),
+                              child: Text(
+                                'Simpan',
+                                style: TextStyle(color: Colors.white), // Ubah warna teks menjadi putih
                               ), // Teks tombol
                             ),
                           ],
@@ -309,5 +309,83 @@ class DetailBukuView extends GetView<DetailBukuController> {
         );
       }
     });
+  }
+  Widget konfirmasiPeminjaman(String namabuku, String idbuku){
+    return Container(
+      child: Center(
+          child: Form(
+          key: controller.formKey,
+          child: Column(
+            children: [
+             Padding(
+               padding: const EdgeInsets.all(8.0),
+               child: Text(
+                 'Pinjam $namabuku',
+                           style: TextStyle(
+                           fontSize: 20,
+                           fontFamily: 'Manrope',
+                           fontWeight: FontWeight.bold,
+
+                         ),
+               ),
+             ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 10),
+                child: TextFormField(
+                  enabled: false,
+                  initialValue: controller.formattedToday.toString(),
+                  decoration: InputDecoration(
+                    hintText: "Tanggal Pinjam",
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return "Tanggal Pinjam tidak boleh kosong";
+                    }
+                    return null;
+                  },
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 10),
+                child: TextFormField(
+                  enabled: false,
+                  initialValue: controller.formattedTwoWeeksLater,
+                  decoration: InputDecoration(
+                    hintText: "Tanggal Kembali",
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return "Tanggal Kembali tidak boleh kosong";
+                    }
+                    return null;
+                  },
+                ),
+              ),
+             Obx(() => controller.loadingpinjam.value ? const CircularProgressIndicator():
+             ElevatedButton(
+               onPressed: () {
+                 controller.pinjam(idbuku);
+               },
+               child: Text("Konfirmasi Pinjam"),
+               style: ElevatedButton.styleFrom(
+                 primary: Color(0xFF351A96),
+                 onPrimary: Colors.white,
+                 padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
+                 shape: RoundedRectangleBorder(
+                   borderRadius: BorderRadius.circular(5),
+                 ),
+               ),
+             ),)
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }

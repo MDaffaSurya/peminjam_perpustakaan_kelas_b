@@ -16,6 +16,7 @@ abstract class Routes {
   static const DETAIL_BUKU = _Paths.DETAIL_BUKU;
   static const SEARCH = _Paths.SEARCH;
   static const PENCARIAN = _Paths.PENCARIAN;
+  static const HISTORY_PINJAM = _Paths.HISTORY_PINJAM;
 }
 
 abstract class _Paths {
@@ -33,4 +34,5 @@ abstract class _Paths {
   static const DETAIL_BUKU = '/detail-buku';
   static const SEARCH = '/search';
   static const PENCARIAN = '/pencarian';
+  static const HISTORY_PINJAM = '/history-pinjam';
 }

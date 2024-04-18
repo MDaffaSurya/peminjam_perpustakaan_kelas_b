@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
 
+import '../modules/HistoryPinjam/bindings/history_pinjam_binding.dart';
+import '../modules/HistoryPinjam/views/history_pinjam_view.dart';
 import '../modules/add_peminjaman/bindings/add_peminjaman_binding.dart';
 import '../modules/add_peminjaman/views/add_peminjaman_view.dart';
 import '../modules/book/bindings/book_binding.dart';
@@ -22,6 +24,7 @@ import '../modules/profile/bindings/profile_binding.dart';
 import '../modules/profile/views/profile_view.dart';
 import '../modules/register/bindings/register_binding.dart';
 import '../modules/register/views/register_view.dart';
+
 part 'app_routes.dart';
 
 class AppPages {
@@ -50,16 +53,16 @@ class AppPages {
       page: () => const BookView(),
       binding: BookBinding(),
     ),
-    GetPage(
-      name: _Paths.PEMINJAMAN,
-      page: () => const PeminjamanView(),
-      binding: PeminjamanBinding(),
-    ),
-    GetPage(
-      name: _Paths.ADD_PEMINJAMAN,
-      page: () => const AddPeminjamanView(),
-      binding: AddPeminjamanBinding(),
-    ),
+    // GetPage(
+    //   name: _Paths.PEMINJAMAN,
+    //   page: () => const PeminjamanView(),
+    //   binding: PeminjamanBinding(),
+    // ),
+    // GetPage(
+    //   name: _Paths.ADD_PEMINJAMAN,
+    //   page: () => const AddPeminjamanView(),
+    //   binding: AddPeminjamanBinding(),
+    // ),
     GetPage(
       name: _Paths.KOLEKSI,
       page: () => const KoleksiView(),
@@ -84,6 +87,11 @@ class AppPages {
       name: _Paths.PENCARIAN,
       page: () => const PencarianView(),
       binding: PencarianBinding(),
+    ),
+    GetPage(
+      name: _Paths.HISTORY_PINJAM,
+      page: () => const HistoryPinjamView(),
+      binding: HistoryPinjamBinding(),
     ),
   ];
 }
