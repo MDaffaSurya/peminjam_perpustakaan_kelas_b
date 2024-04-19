@@ -45,7 +45,7 @@ class PencarianView extends StatelessWidget {
       ),
       body: const Center(
         child: Text(
-          'PencarianView is working',
+          '',
           style: TextStyle(fontSize: 20),
         ),
       ),

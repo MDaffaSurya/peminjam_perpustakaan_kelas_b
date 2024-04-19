@@ -30,7 +30,7 @@ class ProfileView extends GetView<ProfileController> {
             children: [
               CircleAvatar(
                 radius: 50,
-                backgroundImage: AssetImage('assets/images/profile_image.png'), // Ganti dengan gambar profil Anda
+                backgroundImage: AssetImage('assets/ronaldo.jpg'), // Ganti dengan gambar profil Anda
               ),
               SizedBox(height: 20), // Mengatur jarak tinggi sebesar 20
               Text(
@@ -39,7 +39,7 @@ class ProfileView extends GetView<ProfileController> {
               ),
               SizedBox(height: 5), // Mengatur jarak tinggi sebesar 5
               Text(
-                'nama_pengguna', // Ganti dengan nama pengguna Anda
+                'ronaldo', // Ganti dengan nama pengguna Anda
                 style: TextStyle(fontSize: 16),
               ),
               SizedBox(height: 10), // Mengatur jarak tinggi sebesar 10
@@ -49,7 +49,7 @@ class ProfileView extends GetView<ProfileController> {
               ),
               SizedBox(height: 5), // Mengatur jarak tinggi sebesar 5
               Text(
-                'email@example.com', // Ganti dengan alamat email Anda
+                'ronaldo@smk.belajar.id', // Ganti dengan alamat email Anda
                 style: TextStyle(fontSize: 16),
               ),
               SizedBox(height: 10), // Mengatur jarak tinggi sebesar 10
