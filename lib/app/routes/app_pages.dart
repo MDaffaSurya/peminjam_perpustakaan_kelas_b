@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
 
+import '../modules/Admin/bindings/admin_binding.dart';
+import '../modules/Admin/views/admin_view.dart';
 import '../modules/HistoryPinjam/bindings/history_pinjam_binding.dart';
 import '../modules/HistoryPinjam/views/history_pinjam_view.dart';
 import '../modules/add_peminjaman/bindings/add_peminjaman_binding.dart';
@@ -92,6 +94,11 @@ class AppPages {
       name: _Paths.HISTORY_PINJAM,
       page: () => const HistoryPinjamView(),
       binding: HistoryPinjamBinding(),
+    ),
+    GetPage(
+      name: _Paths.ADMIN,
+      page: () => const AdminView(),
+      binding: AdminBinding(),
     ),
   ];
 }

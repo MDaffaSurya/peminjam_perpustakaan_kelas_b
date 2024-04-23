@@ -64,7 +64,7 @@ class HomeView extends GetView<HomeController> {
             Get.offAllNamed(Routes.KOLEKSI);
           }
         },
-        selectedItemColor: Colors.purple,
+        selectedItemColor: Color(0xFF351A96),
         unselectedItemColor: Colors.grey,
         items: [
           BottomNavigationBarItem(

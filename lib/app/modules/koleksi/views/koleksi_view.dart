@@ -33,7 +33,7 @@ class KoleksiView extends GetView<KoleksiController> {
             Get.offAllNamed(Routes.HISTORY_PINJAM);
           }
         },
-        selectedItemColor: Colors.purple,
+        selectedItemColor: Color(0xFF351A96),
         unselectedItemColor: Colors.grey,
         items: [
           BottomNavigationBarItem(

@@ -8,13 +8,13 @@ import '../../../data/constant/endpoint.dart';
 import '../../../data/provider/api_provider.dart';
 
 class KoleksiController extends GetxController with StateMixin {
-  //TODO: Implement KoleksiController
   var datakoleksibuku = RxList<DataKoleksi>();
 
   final String iduser = StorageProvider.read(StorageKey.idUser);
   final loading = false.obs;
 
   final count = 0.obs;
+
   @override
   void onInit() {
     getDataKoleksiBuku();
@@ -53,6 +53,7 @@ class KoleksiController extends GetxController with StateMixin {
         }
       } else {
         change(null, status: RxStatus.error("Gagal Memanggil Data"));
+        showSnackbar("Failed to load data. Please try again later.");
       }
     } on DioError catch (e) {
       if (e.response != null) {
@@ -63,11 +64,21 @@ class KoleksiController extends GetxController with StateMixin {
         }
       } else {
         change(null, status: RxStatus.error(e.message));
+        showSnackbar("Failed to load data. Please try again later.");
       }
     } catch (e) {
       change(null, status: RxStatus.error(e.toString()));
+      showSnackbar("Failed to load data. Please try again later.");
     }
   }
 
-
+  void showSnackbar(String message) {
+    Get.snackbar(
+      'Error',
+      message,
+      snackPosition: SnackPosition.TOP,
+      backgroundColor: Colors.red,
+      colorText: Colors.white,
+    );
+  }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../../routes/app_pages.dart';
 import '../controllers/profile_controller.dart';
@@ -9,57 +10,125 @@ class ProfileView extends GetView<ProfileController> {
 
   @override
   Widget build(BuildContext context) {
+    const Color primary = Color(0xFF5566FF);
+    final height = MediaQuery.of(context).size.height;
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Profile'),
-        centerTitle: true,
-        actions: [
-          IconButton(
+        title: const Text('Profile'), // Judul AppBar
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back), // Icon tombol back
+          onPressed: () {
+            Get.offAllNamed(Routes.HOME); // Kembali ke halaman sebelumnya
+          },
+        ),
+      ),
+      body: Column(
+        children: [
+          SizedBox(
+            height: height * 0.050,
+          ),
+          Center(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 50),
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(25),
+                  color: const Color(0xFFF5F5F5),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                  child: Column(
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(100),
+                        child: Icon(
+                          Icons.account_circle, // Gunakan ikon pengguna bawaan Flutter
+                          size: 100, // Sesuaikan ukuran ikon dengan preferensi Anda
+                          color: Colors.grey, // Sesuaikan warna ikon dengan preferensi Anda
+                        ),
+                      ),
+                      SizedBox(
+                        height: height * 0.010,
+                      ),
+                      Text(
+                        controller.usernameUser,
+                        style: GoogleFonts.inter(
+                          fontWeight: FontWeight.w700,
+                          fontSize: 18,
+                          color: Colors.black,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 5,
+                      )
+                      ,Text(
+                        controller.idUser,
+                        style: GoogleFonts.inter(
+                          fontWeight: FontWeight.w700,
+                          fontSize: 18,
+                          color: Colors.black,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+          SizedBox(
+            height: height * 0.040,
+          ),
+          buildCustomButton(
+            label: "History Peminjaman",
+            onPressed: () {
+              Get.toNamed(Routes.HISTORY_PINJAM);
+            },
+            backgroundColor: primary,
+          ),
+          SizedBox(
+            height: height * 0.015,
+          ),
+          buildCustomButton(
+            label: "Logout Akun",
             onPressed: () {
               Get.offAllNamed(Routes.LOGIN);
             },
-            icon: Icon(Icons.logout),
+            backgroundColor: const Color(0xFFB53333),
           ),
         ],
       ),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              CircleAvatar(
-                radius: 50,
-                backgroundImage: AssetImage('assets/ronaldo.jpg'), // Ganti dengan gambar profil Anda
-              ),
-              SizedBox(height: 20), // Mengatur jarak tinggi sebesar 20
-              Text(
-                'Nama Pengguna',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              ),
-              SizedBox(height: 5), // Mengatur jarak tinggi sebesar 5
-              Text(
-                'ronaldo', // Ganti dengan nama pengguna Anda
-                style: TextStyle(fontSize: 16),
-              ),
-              SizedBox(height: 10), // Mengatur jarak tinggi sebesar 10
-              Text(
-                'Email',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              ),
-              SizedBox(height: 5), // Mengatur jarak tinggi sebesar 5
-              Text(
-                'ronaldo@smk.belajar.id', // Ganti dengan alamat email Anda
-                style: TextStyle(fontSize: 16),
-              ),
-              SizedBox(height: 10), // Mengatur jarak tinggi sebesar 10
-              ElevatedButton(
-                onPressed: () {
-                  // Tambahkan fungsi untuk mengedit profil
-                },
-                child: Text('Edit Profil'),
-              ),
-            ],
+    );
+  }
+
+  Widget buildCustomButton({
+    required String label,
+    required VoidCallback onPressed,
+    required Color backgroundColor,
+  }) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 30),
+      child: SizedBox(
+        width: double.infinity,
+        child: ElevatedButton(
+          onPressed: onPressed,
+          style: ElevatedButton.styleFrom(
+            primary: backgroundColor,
+            padding: EdgeInsets.symmetric(vertical: 15),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(8),
+            ),
+          ),
+          child: Text(
+            label,
+            style: GoogleFonts.inter(
+              fontSize: 18,
+              color: Colors.white,
+              fontWeight: FontWeight.w600,
+            ),
           ),
         ),
       ),

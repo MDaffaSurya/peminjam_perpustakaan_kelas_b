@@ -166,7 +166,29 @@ class DetailBukuView extends GetView<DetailBukuController> {
                             SizedBox(width: 10),
                             ElevatedButton(
                               onPressed: () {
-                                controller.simpanbuku();
+                                showDialog(
+                                  context: Get.context!,
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                      title: Text('Apakah kamu yakin akan menyimpan?'),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () {
+                                            Navigator.of(context).pop();
+                                          },
+                                          child: Text('Batal'),
+                                        ),
+                                        ElevatedButton(
+                                          onPressed: () {
+                                            controller.simpanbuku();
+                                            Navigator.of(context).pop();
+                                          },
+                                          child: Text('Simpan'),
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
                               },
                               style: ElevatedButton.styleFrom(
                                 primary: Colors.grey, // Warna latar belakang
@@ -310,25 +332,25 @@ class DetailBukuView extends GetView<DetailBukuController> {
       }
     });
   }
+
   Widget konfirmasiPeminjaman(String namabuku, String idbuku){
     return Container(
       child: Center(
-          child: Form(
+        child: Form(
           key: controller.formKey,
           child: Column(
             children: [
-             Padding(
-               padding: const EdgeInsets.all(8.0),
-               child: Text(
-                 'Pinjam $namabuku',
-                           style: TextStyle(
-                           fontSize: 20,
-                           fontFamily: 'Manrope',
-                           fontWeight: FontWeight.bold,
-
-                         ),
-               ),
-             ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  'Pinjam $namabuku',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontFamily: 'Manrope',
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 10),
                 child: TextFormField(
@@ -367,21 +389,21 @@ class DetailBukuView extends GetView<DetailBukuController> {
                   },
                 ),
               ),
-             Obx(() => controller.loadingpinjam.value ? const CircularProgressIndicator():
-             ElevatedButton(
-               onPressed: () {
-                 controller.pinjam(idbuku);
-               },
-               child: Text("Konfirmasi Pinjam"),
-               style: ElevatedButton.styleFrom(
-                 primary: Color(0xFF351A96),
-                 onPrimary: Colors.white,
-                 padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
-                 shape: RoundedRectangleBorder(
-                   borderRadius: BorderRadius.circular(5),
-                 ),
-               ),
-             ),)
+              Obx(() => controller.loadingpinjam.value ? const CircularProgressIndicator():
+              ElevatedButton(
+                onPressed: () {
+                  controller.pinjam(idbuku);
+                },
+                child: Text("Konfirmasi Pinjam"),
+                style: ElevatedButton.styleFrom(
+                  primary: Color(0xFF351A96),
+                  onPrimary: Colors.white,
+                  padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5),
+                  ),
+                ),
+              ),)
             ],
           ),
         ),

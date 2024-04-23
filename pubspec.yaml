@@ -35,9 +35,13 @@ flutter_native_splash:
 flutter: 
   uses-material-design: true
 
-assets:
-  - assets/Smart Library.png
-  - assets/ronaldo.jpg
-  - assets/Lottie/
+  assets:
+    - assets/user.png
+
+#assets:
+#  - assets/Smart Library.png
+#  - assets/ronaldo.jpg
+#  - assets/user.png
+#  - assets/Lottie/
 
 

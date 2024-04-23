@@ -31,7 +31,7 @@ class HistoryPinjamView extends GetView<HistoryPinjamController> {
             Get.offAllNamed(Routes.KOLEKSI);
           }
         },
-        selectedItemColor: Colors.purple, // Warna ikon yang dipilih
+        selectedItemColor: Color(0xFF351A96), // Warna ikon yang dipilih
         unselectedItemColor: Colors.grey, // Warna ikon yang tidak dipilih
         items: [
           BottomNavigationBarItem(
