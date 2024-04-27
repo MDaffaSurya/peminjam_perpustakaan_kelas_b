@@ -134,7 +134,7 @@ class DataBuku {
     map['Penerbit'] = penerbit;
     map['TahunTerbit'] = tahunTerbit;
     map['JumlahHalaman'] = jumlahHalaman;
-    map['Rating'] = rating;
+    map['Rating'] = rating?.toDouble();
     map['Total_ulasan'] = totalUlasan;
     map['JumlahRating'] = jumlahRating;
     map['JumlahPeminjam'] = jumlahPeminjam;

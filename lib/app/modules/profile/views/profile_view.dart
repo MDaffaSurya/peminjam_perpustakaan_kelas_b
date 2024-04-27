@@ -53,7 +53,7 @@ class ProfileView extends GetView<ProfileController> {
                       ),
                       Text(
                         controller.usernameUser,
-                        style: GoogleFonts.inter(
+                        style: GoogleFonts.manrope(
                           fontWeight: FontWeight.w700,
                           fontSize: 18,
                           color: Colors.black,
@@ -64,7 +64,7 @@ class ProfileView extends GetView<ProfileController> {
                       )
                       ,Text(
                         controller.idUser,
-                        style: GoogleFonts.inter(
+                        style: GoogleFonts.manrope(
                           fontWeight: FontWeight.w700,
                           fontSize: 18,
                           color: Colors.black,
@@ -95,9 +95,67 @@ class ProfileView extends GetView<ProfileController> {
           buildCustomButton(
             label: "Logout Akun",
             onPressed: () {
-              Get.offAllNamed(Routes.LOGIN);
+              showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    title: Text("Konfirmasi Logout"),
+                    content: Text("Apakah Anda yakin untuk logout?"),
+                    actions: [
+                      TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pop();// Logout jika dikonfirmasi// Tutup dialog jika tidak jadi logout
+                        },
+                        child: Text("Tidak"),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pop();// Logout jika dikonfirmasi// Tutup dialog jika tidak jadi logout
+                          Get.offAllNamed(Routes.LOGIN);
+                        },
+                        child: Text("Ya"),
+                      ),
+                    ],
+                  );
+                },
+              );
             },
             backgroundColor: const Color(0xFFB53333),
+          ),
+
+          SizedBox(
+            height: height * 0.015,
+          ),
+
+          buildCustomButton(
+            label: "Edit Profile",
+            onPressed: () {
+              showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    title: Text("Konfirmasi Edit Profile"),
+                    content: Text("Apakah Anda yakin untuk Edit Profile?"),
+                    actions: [
+                      TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pop();// Logout jika dikonfirmasi// Tutup dialog jika tidak jadi logout
+                        },
+                        child: Text("Tidak"),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pop();// Logout jika dikonfirmasi// Tutup dialog jika tidak jadi logout
+                          Get.toNamed(Routes.UPDATE_PROFILE);
+                        },
+                        child: Text("Ya"),
+                      ),
+                    ],
+                  );
+                },
+              );
+            },
+            backgroundColor: const Color(0xFF351A96),
           ),
         ],
       ),

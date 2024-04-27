@@ -55,83 +55,83 @@ class HistoryPinjamView extends GetView<HistoryPinjamController> {
     );
   }
 
-  Widget _buildBookCard() {
-    return GestureDetector(
-      onTap: () {
-        // Implementasi logika untuk menavigasi ke detail buku
-      },
-      child: Card(
-        elevation: 3,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(15),
-        ),
-        child: Row(
-          children: [
-            ClipRRect(
-              borderRadius: BorderRadius.horizontal(
-                left: Radius.circular(15),
-              ),
-              child: Image.network(
-                'https://perpustakaan.kemendagri.go.id/opac/lib/minigalnano/createthumb.php?filename=images/docs/Sejarah_Dunia_yang_Disembunyikan.jpg.jpg&width=200', // URL gambar sampul buku
-                fit: BoxFit.cover,
-                height: 100,
-                width: 80,
-              ),
-            ),
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Judul B', // Judul buku
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                      ),
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                    SizedBox(height: 4),
-                    Text(
-                      'Penulis Buku', // Penulis buku
-                      style: TextStyle(
-                        color: Colors.grey,
-                      ),
-                    ),
-                    SizedBox(height: 4),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Tanggal Pinjam: 2022-04-01', // Tanggal pinjam
-                              style: TextStyle(
-                                color: Colors.grey,
-                              ),
-                            ),
-                            SizedBox(height: 4),
-                            Text(
-                              'Tanggal Kembali: 2022-04-10', // Tanggal kembali
-                              style: TextStyle(
-                                color: Colors.grey,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
+  // Widget _buildBookCard() {
+  //   return GestureDetector(
+  //     onTap: () {
+  //       // Implementasi logika untuk menavigasi ke detail buku
+  //     },
+  //     child: Card(
+  //       elevation: 3,
+  //       shape: RoundedRectangleBorder(
+  //         borderRadius: BorderRadius.circular(15),
+  //       ),
+  //       child: Row(
+  //         children: [
+  //           ClipRRect(
+  //             borderRadius: BorderRadius.horizontal(
+  //               left: Radius.circular(15),
+  //             ),
+  //             child: Image.network(
+  //               'https://perpustakaan.kemendagri.go.id/opac/lib/minigalnano/createthumb.php?filename=images/docs/Sejarah_Dunia_yang_Disembunyikan.jpg.jpg&width=200', // URL gambar sampul buku
+  //               fit: BoxFit.cover,
+  //               height: 100,
+  //               width: 80,
+  //             ),
+  //           ),
+  //           Expanded(
+  //             child: Padding(
+  //               padding: const EdgeInsets.all(8.0),
+  //               child: Column(
+  //                 crossAxisAlignment: CrossAxisAlignment.start,
+  //                 children: [
+  //                   Text(
+  //                     'Judul B', // Judul buku
+  //                     style: TextStyle(
+  //                       fontWeight: FontWeight.bold,
+  //                     ),
+  //                     maxLines: 2,
+  //                     overflow: TextOverflow.ellipsis,
+  //                   ),
+  //                   SizedBox(height: 4),
+  //                   Text(
+  //                     'Penulis Buku', // Penulis buku
+  //                     style: TextStyle(
+  //                       color: Colors.grey,
+  //                     ),
+  //                   ),
+  //                   SizedBox(height: 4),
+  //                   Row(
+  //                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  //                     children: [
+  //                       Column(
+  //                         crossAxisAlignment: CrossAxisAlignment.start,
+  //                         children: [
+  //                           Text(
+  //                             'Tanggal Pinjam: 2022-04-01', // Tanggal pinjam
+  //                             style: TextStyle(
+  //                               color: Colors.grey,
+  //                             ),
+  //                           ),
+  //                           SizedBox(height: 4),
+  //                           Text(
+  //                             'Tanggal Kembali: 2022-04-10', // Tanggal kembali
+  //                             style: TextStyle(
+  //                               color: Colors.grey,
+  //                             ),
+  //                           ),
+  //                         ],
+  //                       ),
+  //                     ],
+  //                   ),
+  //                 ],
+  //               ),
+  //             ),
+  //           ),
+  //         ],
+  //       ),
+  //     ),
+  //   );
+  // }
 
   Widget datakoleksibuku() {
     return Obx(() {
@@ -186,7 +186,7 @@ class HistoryPinjamView extends GetView<HistoryPinjamController> {
                               ),
                               SizedBox(height: 4),
                               Text(
-                                History.kodePeminjaman.toString(), // Penulis buku
+                                History.penulisBuku.toString(), // Penulis buku
                                 style: TextStyle(
                                   color: Colors.grey,
                                 ),

@@ -5,6 +5,8 @@ class Endpoint {
   static const String register = "${baseUrlApi}registrasi";
   static const String login = "${baseUrlApi}login";
   static const String logout = "${baseUrlApi}logout";
+  static const String getDataProfile = "${baseUrlApi}profil";
+  static const String update = "${baseUrlApi}update";
   static const String book = "${baseUrlApi}buku";
   static const String bookNew = "${baseUrlApi}buku/new";
   static const String bookPopular = "${baseUrlApi}popular/buku";

@@ -18,6 +18,7 @@ abstract class Routes {
   static const PENCARIAN = _Paths.PENCARIAN;
   static const HISTORY_PINJAM = _Paths.HISTORY_PINJAM;
   static const ADMIN = _Paths.ADMIN;
+  static const UPDATE_PROFILE = _Paths.UPDATE_PROFILE;
 }
 
 abstract class _Paths {
@@ -37,4 +38,5 @@ abstract class _Paths {
   static const PENCARIAN = '/pencarian';
   static const HISTORY_PINJAM = '/history-pinjam';
   static const ADMIN = '/admin';
+  static const UPDATE_PROFILE = '/update-profile';
 }
